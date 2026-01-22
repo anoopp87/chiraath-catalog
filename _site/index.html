@@ -1,2 +1,133 @@
-<h1>CHIRAATH</h1>
-<p>Catalog setup successful ✅</p>
+
+
+
+
+
+<style>
+  :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:var(--text)}
+  .wrap{max-width:980px;margin:auto;padding:16px}
+  .cover img{width:100%;height:160px;object-fit:cover;border-radius:16px;border:1px solid var(--border)}
+  .brand{margin:14px 0}
+  .brand img{height:38px}
+  .muted{color:var(--muted)}
+  .btn{display:block;padding:12px;border:1px solid var(--border2);border-radius:14px;text-align:center;text-decoration:none;color:var(--text);margin-bottom:10px;font-weight:800}
+  .smallbtn{padding:10px;font-size:14px;background:var(--chip);border-color:var(--border);font-weight:700}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .row .btn{flex:1;min-width:160px;margin-bottom:0}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
+  .chip{padding:9px 12px;border-radius:999px;border:1px solid var(--border);background:var(--chip);color:var(--text);font-size:13px;font-weight:750}
+  .chipbtn{appearance:none;-webkit-appearance:none;background:var(--chip);border:1px solid var(--border);border-radius:999px;padding:9px 12px;font-size:13px;font-weight:750;cursor:pointer}
+  .chipbtn.active{background:#111;color:#fff;border-color:#111}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .card{border:1px solid var(--border);border-radius:16px;padding:10px;background:#fff}
+  .card img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;background:#f3f3f3}
+  .code{font-size:12px;color:var(--muted);margin-top:8px}
+  .meta{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.35}
+  .price{margin-top:6px}
+  .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
+  .badge{font-size:12px;border:1px solid var(--border2);border-radius:999px;padding:6px 10px;display:inline-block;margin-top:8px}
+  h1{margin:8px 0 2px;font-size:22px}
+  details.faq{border:1px solid var(--border); border-radius:16px; padding:12px 14px; background:#fff}
+  details.faq + details.faq{margin-top:10px}
+  details.faq summary{cursor:pointer; font-weight:900; list-style:none}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary:after{content:"+"; float:right; color:var(--muted); font-weight:900}
+  details.faq[open] summary:after{content:"–"}
+  .faq .content{margin-top:10px; color:var(--muted); font-size:13px; line-height:1.6}
+</style>
+
+<div class="wrap" id="top">
+
+<div class="brand">
+  <h1>CHIRAATH</h1>
+  <div class="muted">Elegant Sarees & Salwars</div>
+</div>
+
+<a class="btn" href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp Order</a>
+<div class="row">
+  <a class="btn smallbtn" href="https://wa.me/91YYYYYYYYYY" target="_blank" rel="noopener">WhatsApp (Backup)</a>
+  <a class="btn smallbtn" href="mailto:orders@chiraath.in">Email Order</a>
+</div>
+
+<div class="chips">
+  <button class="chipbtn active" type="button" data-filter="all">All</button>
+  <button class="chipbtn" type="button" data-filter="Saree">Sarees</button>
+  <button class="chipbtn" type="button" data-filter="Salwar">Salwars</button>
+</div>
+
+
+
+
+
+<div class="grid" id="productGrid">
+  
+  
+</div>
+
+<footer style="margin-top:28px;padding-top:18px;border-top:1px solid var(--border)">
+
+  <details class="faq">
+    <summary>How to Order</summary>
+    <div class="content">
+      1) Select a product<br>
+      2) Tap <strong>WhatsApp Order</strong><br>
+      3) Send the pre-filled message<br>
+      4) We will confirm availability and delivery
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Return / Exchange (7 Days)</summary>
+    <div class="content">
+      • 7 days return or exchange from date of delivery<br>
+      • Product must be unused and in original condition<br>
+      • Unboxing video is mandatory for any return/exchange request<br>
+      • Slight color variations may occur due to lighting and screen settings
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Fabric Care</summary>
+    <div class="content">
+      • Dry clean recommended for first wash<br>
+      • Avoid soaking or harsh detergents<br>
+      • Do not wring or tumble dry<br>
+      • Store in a cool, dry place away from direct sunlight
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Contact</summary>
+    <div class="content">
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp Order</a> |
+      <a href="https://wa.me/91YYYYYYYYYY" target="_blank" rel="noopener">Backup WhatsApp</a><br>
+      <a href="mailto:orders@chiraath.in">Email: orders@chiraath.in</a>
+    </div>
+  </details>
+
+  <div style="margin-top:14px;font-size:13px;color:var(--muted)">
+    © CHIRAATH. All rights reserved.
+  </div>
+</footer>
+
+</div>
+
+<script>
+  const btns = document.querySelectorAll('[data-filter]');
+  const items = document.querySelectorAll('.product-item');
+
+  btns.forEach(b => b.addEventListener('click', () => {
+    btns.forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+
+    const f = b.dataset.filter;
+    items.forEach(i => {
+      const cat = i.dataset.category;
+      i.style.display = (f === 'all' || cat === f) ? '' : 'none';
+    });
+  }));
+</script>
