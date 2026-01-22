@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://cool-gecko-8ec7d6.netlify.app
+display_url: https://cool-gecko-8ec7d6.netlify.app
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "src/products"
+    create: true
+    slug: "{{fields.code}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Code", name: "code", widget: "string" }
+      - { label: "Product Name", name: "title", widget: "string" }
+      - { label: "Category", name: "category", widget: "select", options: ["Saree","Salwar"] }
+      - { label: "Color (optional)", name: "color", widget: "string", required: false }
+      - { label: "Size (optional)", name: "size", widget: "string", required: false }
+      - { label: "Price (₹)", name: "price", widget: "number", required: false, value_type: "int" }
+      - { label: "Offer Price (₹)", name: "offer_price", widget: "number", required: false, value_type: "int" }
+      - { label: "In Stock", name: "in_stock", widget: "boolean", default: true }
+      - { label: "Hide Product", name: "hidden", widget: "boolean", default: false }
+
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        min: 1
+        field: { label: "Image", name: "image", widget: "image" }
+
+      - { label: "Product Video URL (optional)", name: "video", widget: "string", required: false }
