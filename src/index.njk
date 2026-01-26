@@ -2,9 +2,9 @@
 title: CHIRAATH
 ---
 
-{% set whatsapp_main = "91XXXXXXXXXX" %}
-{% set whatsapp_backup = "91YYYYYYYYYY" %}
-{% set order_email = "orders@chiraath.in" %}
+{% set whatsapp_main = "919567883837" %}
+{% set whatsapp_backup = "919496341253" %}
+{% set order_email = "chiraath.official@hotmail.com" %}
 
 <style>
   :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
@@ -14,23 +14,47 @@ title: CHIRAATH
   .brand{margin:14px 0}
   .muted{color:var(--muted)}
   .btn{display:block;padding:12px;border:1px solid var(--border2);border-radius:14px;text-align:center;text-decoration:none;color:var(--text);margin-bottom:10px;font-weight:800}
-  .smallbtn{padding:10px;font-size:14px;background:var(--chip);border-color:var(--border);font-weight:700}
-  .row{display:flex;gap:10px;flex-wrap:wrap}
-  .row .btn{flex:1;min-width:160px;margin-bottom:0}
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
   .chipbtn{appearance:none;background:var(--chip);border:1px solid var(--border);border-radius:999px;padding:9px 12px;font-size:13px;font-weight:750;cursor:pointer}
   .chipbtn.active{background:#111;color:#fff;border-color:#111}
+
+  .search{margin:10px 0 8px}
+  .search input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:14px;font-size:14px}
+
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   @media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr)}}
   @media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+  .cardlink{color:inherit;text-decoration:none;display:block}
   .card{border:1px solid var(--border);border-radius:16px;padding:10px;background:#fff}
-  .card img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px;background:#f3f3f3}
+  .card:hover{border-color:#d7d7d7}
+
+  .imgwrap{position:relative}
+  .card img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;          /* crop instead of showing full */
+    object-position:50% 18%;   /* focus higher (face/blouse area) */
+    border-radius:12px;
+    background:#f3f3f3
+  }
+  .oos{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#111;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    border-radius:999px;
+    padding:6px 10px
+  }
+
   .code{font-size:12px;color:var(--muted);margin-top:8px}
-  .meta{font-size:13px;color:var(--muted);margin-top:4px}
   .price{margin-top:6px}
   .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
-  .badge{font-size:12px;border:1px solid var(--border2);border-radius:999px;padding:6px 10px;display:inline-block;margin-top:8px}
   h1{margin:8px 0 2px;font-size:22px}
+
   details.faq{border:1px solid var(--border);border-radius:16px;padding:12px 14px;background:#fff}
   details.faq + details.faq{margin-top:10px}
   details.faq summary{cursor:pointer;font-weight:900;list-style:none}
@@ -47,32 +71,32 @@ title: CHIRAATH
     <div class="muted">Elegant Sarees & Salwars</div>
   </div>
 
-  <a class="btn" href="https://wa.me/{{ whatsapp_main }}" target="_blank">WhatsApp Order</a>
-  <div class="row">
-    <a class="btn smallbtn" href="https://wa.me/{{ whatsapp_backup }}" target="_blank">WhatsApp (Backup)</a>
-    <a class="btn smallbtn" href="mailto:{{ order_email }}">Email Order</a>
-  </div>
+  <!-- Only ONE CTA on main view -->
+  <a class="btn" href="https://wa.me/{{ whatsapp_main }}" target="_blank" rel="noopener">
+    WhatsApp Order
+  </a>
 
   <div class="chips">
-    <button class="chipbtn active" data-filter="all">All</button>
-    <button class="chipbtn" data-filter="Saree">Sarees</button>
-    <button class="chipbtn" data-filter="Salwar">Salwars</button>
+    <button class="chipbtn active" data-filter="all" type="button">All</button>
+    <button class="chipbtn" data-filter="Saree" type="button">Sarees</button>
+    <button class="chipbtn" data-filter="Salwar" type="button">Salwars</button>
   </div>
 
-  {% macro msg(p) %}
-    Hi Chiraath! I want to order {{ p.data.code }} – {{ p.data.title }}.
-  {% endmacro %}
+  <div class="search">
+    <input id="searchBox" type="search" placeholder="Search by code or name…">
+  </div>
 
   {% macro card(p) %}
     <div class="card">
-      <img src="{{ p.data.images[0] }}" alt="{{ p.data.title }}">
+      <div class="imgwrap">
+        <img src="{{ p.data.images[0] }}" alt="{{ p.data.title }}">
+        {% if p.data.in_stock == false %}
+          <div class="oos">Out of stock</div>
+        {% endif %}
+      </div>
+
       <div class="code">{{ p.data.code }}</div>
       <strong>{{ p.data.title }}</strong>
-
-      <div class="meta">
-        {% if p.data.color %}Color: {{ p.data.color }}<br>{% endif %}
-        {% if p.data.size %}Size: {{ p.data.size }}{% endif %}
-      </div>
 
       <div class="price">
         {% if p.data.offer_price %}
@@ -81,59 +105,106 @@ title: CHIRAATH
           <strong>₹{{ p.data.price }}</strong>
         {% endif %}
       </div>
-
-      {% if p.data.in_stock == false %}
-        <div class="badge">Out of stock</div>
-      {% else %}
-        <a class="btn" href="https://wa.me/{{ whatsapp_main }}?text={{ msg(p) | url_encode }}" target="_blank">WhatsApp Order</a>
-      {% endif %}
     </div>
   {% endmacro %}
 
   <div class="grid">
-    {% for p in collections.products %}
+    {% set prods = collections.products | reverse %}
+    {% for p in prods %}
       {% if not p.data.hidden %}
-        <div class="product-item" data-category="{{ p.data.category }}">
-          {{ card(p) }}
+        <div class="product-item"
+             data-category="{{ p.data.category }}"
+             data-stock="{% if p.data.in_stock == false %}0{% else %}1{% endif %}">
+          <a class="cardlink" href="{{ p.url }}">{{ card(p) }}</a>
         </div>
       {% endif %}
     {% endfor %}
   </div>
 
   <footer style="margin-top:28px">
+
     <details class="faq">
       <summary>How to Order</summary>
-      <div class="content">Choose product → WhatsApp → Confirm</div>
+      <div class="content">
+        Step 1: Select your favorite piece from our gallery.<br>
+        Step 2: Send a screenshot via WhatsApp or Email.<br>
+        Step 3: We confirm price and availability.<br>
+        Step 4: Your order is shipped within 48 hours of payment.
+      </div>
     </details>
 
     <details class="faq">
-      <summary>Returns (7 Days)</summary>
-      <div class="content">Unboxing video required. Product unused.</div>
+      <summary>Return & Exchange Policy</summary>
+      <div class="content">
+        • Returns accepted only for damaged items.<br>
+        • 360° unpacking video mandatory for refund claims.<br>
+        • Issues must be reported within 24 hours of delivery.<br>
+        • Items must be shipped back within 7 days of approval.<br>
+        • Must be unused, unwashed, with original tags.
+      </div>
     </details>
 
     <details class="faq">
-      <summary>Fabric Care</summary>
-      <div class="content">Dry clean recommended.</div>
+      <summary>Fabric & Care Information</summary>
+      <div class="content">
+        • Sarees include unstitched blouse piece.<br>
+        • Salwar materials are free-size for custom stitching.<br>
+        • Premium Silk, Cotton & Designer fabrics.<br>
+        • Dry clean recommended for first wash.<br>
+        • Every piece hand-selected to CHIRAATH standards.
+      </div>
     </details>
+
+    <details class="faq">
+      <summary>Contact Us</summary>
+      <div class="content">
+        • WhatsApp (Main): <a href="https://wa.me/{{ whatsapp_main }}" target="_blank" rel="noopener">+91 95678 3837</a><br>
+        • WhatsApp (Backup): <a href="https://wa.me/{{ whatsapp_backup }}" target="_blank" rel="noopener">+91 94963 41253</a><br>
+        • Email: <a href="mailto:{{ order_email }}">{{ order_email }}</a><br>
+        • Instagram: <a href="https://instagram.com/chiraath2025" target="_blank" rel="noopener">@chiraath2025</a>
+      </div>
+    </details>
+
   </footer>
 
 </div>
 
 <script>
-  const btns = document.querySelectorAll('[data-filter]');
-  const items = document.querySelectorAll('.product-item');
+  const grid = document.querySelector('.grid');
+  const items = Array.from(document.querySelectorAll('.product-item'));
 
-  btns.forEach(btn => btn.onclick = () => {
+  // Sort: in-stock first (keeps your newest-first order inside each group)
+  items.sort((a,b) => Number(b.dataset.stock) - Number(a.dataset.stock));
+  items.forEach(i => grid.appendChild(i));
+
+  // Filter + Search
+  const btns = document.querySelectorAll('[data-filter]');
+  const searchBox = document.getElementById('searchBox');
+
+  function applyFilters(){
+    const active = document.querySelector('.chipbtn.active');
+    const f = active ? active.dataset.filter : 'all';
+    const q = (searchBox.value || '').trim().toLowerCase();
+
+    items.forEach(i => {
+      const cat = i.dataset.category || '';
+      const text = i.innerText.toLowerCase();
+      const matchCat = (f === 'all' || cat === f);
+      const matchQ = (!q || text.includes(q));
+      i.style.display = (matchCat && matchQ) ? '' : 'none';
+    });
+  }
+
+  btns.forEach(btn => btn.addEventListener('click', () => {
     btns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const f = btn.dataset.filter;
-    items.forEach(i => {
-      i.style.display = (f === 'all' || i.dataset.category === f) ? '' : 'none';
-    });
-  });
+    applyFilters();
+  }));
+
+  searchBox.addEventListener('input', applyFilters);
 </script>
 
-<!-- Netlify Identity – REQUIRED -->
+<!-- Netlify Identity -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <script>
   if (window.netlifyIdentity) {

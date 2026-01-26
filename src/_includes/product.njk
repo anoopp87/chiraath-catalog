@@ -1,0 +1,156 @@
+{# src/_includes/product.njk #}
+
+{% set whatsapp_main = "919567883837" %}
+{% set whatsapp_backup = "919496341253" %}
+{% set order_email = "chiraath.official@hotmail.com" %}
+
+<style>
+  :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:var(--text)}
+  .wrap{max-width:860px;margin:auto;padding:16px}
+  a{color:inherit}
+  .topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .topbar .left{display:flex;gap:10px;align-items:center}
+  .iconbtn{border:1px solid var(--border2);background:#fff;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block}
+  .iconbtn:active{transform:scale(.99)}
+  .muted{color:var(--muted)}
+  .card{border:1px solid var(--border);border-radius:16px;background:#fff;padding:12px}
+  .img{
+  	width:100%;
+  	max-height:520px;        /* prevents giant image */
+  	height:auto;
+  	border-radius:14px;
+  	object-fit:cover;        /* neat crop */
+  	object-position:50% 18%; /* focus upper area */
+  	background:#f3f3f3;
+  }
+  .code{font-size:12px;color:var(--muted);margin-top:10px}
+  h1{margin:6px 0 4px;font-size:20px}
+  .price{margin-top:10px}
+  .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
+  .badge{display:inline-block;margin-top:10px;border:1px solid var(--border2);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900}
+  .cta{display:block;margin-top:12px;padding:12px;border:1px solid var(--border2);border-radius:14px;text-align:center;text-decoration:none;font-weight:900}
+  .cta.primary{background:#111;color:#fff;border-color:#111}
+  details.faq{margin-top:12px;border:1px solid var(--border);border-radius:16px;padding:12px 14px;background:#fff}
+  details.faq summary{cursor:pointer;font-weight:900;list-style:none}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary:after{content:"+";float:right;color:var(--muted)}
+  details.faq[open] summary:after{content:"–"}
+  .content{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6}
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="left">
+      <a class="iconbtn" href="/">← Back</a>
+    </div>
+    <button class="iconbtn" id="shareBtn" type="button">Share</button>
+  </div>
+
+  <div class="card">
+    {% if images and images.length %}
+      <a href="{{ images[0] }}" target="_blank" rel="noopener">
+  <img class="img" src="{{ images[0] }}" alt="{{ title }}">
+</a>
+    {% endif %}
+
+    <div class="code">{{ code }}</div>
+    <h1>{{ title }}</h1>
+
+    <div class="muted">
+      {% if category %}Category: {{ category }}<br>{% endif %}
+      {% if color %}Color: {{ color }}<br>{% endif %}
+      {% if size %}Size: {{ size }}<br>{% endif %}
+    </div>
+
+    <div class="price">
+      {% if offer_price %}
+        <span class="old">₹{{ price }}</span><strong>₹{{ offer_price }}</strong>
+      {% else %}
+        <strong>₹{{ price }}</strong>
+      {% endif %}
+    </div>
+
+    {% if in_stock == false %}
+      <div class="badge">Out of stock</div>
+    {% else %}
+      {% set msg = "Hi Chiraath! I want to order " ~ code ~ " - " ~ title ~ "." %}
+      {% if color %}{% set msg = msg ~ " Color: " ~ color ~ "." %}{% endif %}
+      {% if size %}{% set msg = msg ~ " Size: " ~ size ~ "." %}{% endif %}
+      {% if offer_price %}
+        {% set msg = msg ~ " Offer Price: ₹" ~ offer_price ~ "." %}
+      {% elseif price %}
+        {% set msg = msg ~ " Price: ₹" ~ price ~ "." %}
+      {% endif %}
+
+      <a class="cta primary"
+         href="https://wa.me/{{ whatsapp_main }}?text={{ msg | url_encode }}"
+         target="_blank" rel="noopener">
+        WhatsApp Order
+      </a>
+    {% endif %}
+<footer style="margin-top:18px">
+  <details class="faq">
+    <summary>How to Order</summary>
+    <div class="content">
+      Step 1: Select your favorite piece from our gallery.<br>
+      Step 2: Send a screenshot via WhatsApp or Email.<br>
+      Step 3: We confirm price and availability.<br>
+      Step 4: Your order is shipped within 48 hours of payment.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Return & Exchange Policy</summary>
+    <div class="content">
+      • Returns accepted only for damaged items.<br>
+      • 360° unpacking video mandatory for refund claims.<br>
+      • Issues must be reported within 24 hours of delivery.<br>
+      • Items must be shipped back within 7 days of approval.<br>
+      • Must be unused, unwashed, with original tags.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Fabric & Care Information</summary>
+    <div class="content">
+      • Sarees include unstitched blouse piece.<br>
+      • Salwar materials are free-size for custom stitching.<br>
+      • Premium Silk, Cotton & Designer fabrics.<br>
+      • Dry clean recommended for first wash.<br>
+      • Every piece hand-selected to CHIRAATH standards.
+    </div>
+  </details>
+</footer>
+    <details class="faq">
+      <summary>Contact Us</summary>
+      <div class="content">
+        WhatsApp (Main): <a href="https://wa.me/{{ whatsapp_main }}" target="_blank" rel="noopener">+91 95678 3837</a><br>
+        WhatsApp (Backup): <a href="https://wa.me/{{ whatsapp_backup }}" target="_blank" rel="noopener">+91 94963 41253</a><br>
+        Email: <a href="mailto:{{ order_email }}">{{ order_email }}</a><br>
+        Instagram: <a href="https://instagram.com/chiraath2025" target="_blank" rel="noopener">@chiraath2025</a>
+      </div>
+    </details>
+
+    {% if video %}
+      <a class="cta" href="{{ video }}" target="_blank" rel="noopener">Watch Product Video</a>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('shareBtn');
+  btn.addEventListener('click', async () => {
+    const url = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: document.title, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        btn.textContent = "Link Copied";
+        setTimeout(() => btn.textContent = "Share", 1200);
+      }
+    } catch (e) {}
+  });
+</script>

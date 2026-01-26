@@ -1,0 +1,148 @@
+
+
+
+
+
+
+<style>
+  :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:var(--text)}
+  .wrap{max-width:860px;margin:auto;padding:16px}
+  a{color:inherit}
+  .topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .topbar .left{display:flex;gap:10px;align-items:center}
+  .iconbtn{border:1px solid var(--border2);background:#fff;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer;text-decoration:none;display:inline-block}
+  .iconbtn:active{transform:scale(.99)}
+  .muted{color:var(--muted)}
+  .card{border:1px solid var(--border);border-radius:16px;background:#fff;padding:12px}
+  .img{
+  	width:100%;
+  	max-height:520px;        /* prevents giant image */
+  	height:auto;
+  	border-radius:14px;
+  	object-fit:cover;        /* neat crop */
+  	object-position:50% 18%; /* focus upper area */
+  	background:#f3f3f3;
+  }
+  .code{font-size:12px;color:var(--muted);margin-top:10px}
+  h1{margin:6px 0 4px;font-size:20px}
+  .price{margin-top:10px}
+  .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
+  .badge{display:inline-block;margin-top:10px;border:1px solid var(--border2);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900}
+  .cta{display:block;margin-top:12px;padding:12px;border:1px solid var(--border2);border-radius:14px;text-align:center;text-decoration:none;font-weight:900}
+  .cta.primary{background:#111;color:#fff;border-color:#111}
+  details.faq{margin-top:12px;border:1px solid var(--border);border-radius:16px;padding:12px 14px;background:#fff}
+  details.faq summary{cursor:pointer;font-weight:900;list-style:none}
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary:after{content:"+";float:right;color:var(--muted)}
+  details.faq[open] summary:after{content:"–"}
+  .content{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6}
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="left">
+      <a class="iconbtn" href="/">← Back</a>
+    </div>
+    <button class="iconbtn" id="shareBtn" type="button">Share</button>
+  </div>
+
+  <div class="card">
+    
+      <a href="/images/whatsapp-image-2026-01-08-at-18.54.10.jpeg" target="_blank" rel="noopener">
+  <img class="img" src="/images/whatsapp-image-2026-01-08-at-18.54.10.jpeg" alt="Banarasi Silk Saree - Rust Orange">
+</a>
+    
+
+    <div class="code">CHR-115</div>
+    <h1>Banarasi Silk Saree - Rust Orange</h1>
+
+    <div class="muted">
+      Category: Saree<br>
+      Color: Rust Orange<br>
+      
+    </div>
+
+    <div class="price">
+      
+        <strong>₹1380</strong>
+      
+    </div>
+
+    
+      
+      
+      
+      
+        
+      
+
+      <a class="cta primary"
+         href="https://wa.me/919567883837?text=Hi%20Chiraath!%20I%20want%20to%20order%20CHR-115%20-%20Banarasi%20Silk%20Saree%20-%20Rust%20Orange.%20Color%3A%20Rust%20Orange.%20Price%3A%20%E2%82%B91380."
+         target="_blank" rel="noopener">
+        WhatsApp Order
+      </a>
+    
+<footer style="margin-top:18px">
+  <details class="faq">
+    <summary>How to Order</summary>
+    <div class="content">
+      Step 1: Select your favorite piece from our gallery.<br>
+      Step 2: Send a screenshot via WhatsApp or Email.<br>
+      Step 3: We confirm price and availability.<br>
+      Step 4: Your order is shipped within 48 hours of payment.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Return & Exchange Policy</summary>
+    <div class="content">
+      • Returns accepted only for damaged items.<br>
+      • 360° unpacking video mandatory for refund claims.<br>
+      • Issues must be reported within 24 hours of delivery.<br>
+      • Items must be shipped back within 7 days of approval.<br>
+      • Must be unused, unwashed, with original tags.
+    </div>
+  </details>
+
+  <details class="faq">
+    <summary>Fabric & Care Information</summary>
+    <div class="content">
+      • Sarees include unstitched blouse piece.<br>
+      • Salwar materials are free-size for custom stitching.<br>
+      • Premium Silk, Cotton & Designer fabrics.<br>
+      • Dry clean recommended for first wash.<br>
+      • Every piece hand-selected to CHIRAATH standards.
+    </div>
+  </details>
+</footer>
+    <details class="faq">
+      <summary>Contact Us</summary>
+      <div class="content">
+        WhatsApp (Main): <a href="https://wa.me/919567883837" target="_blank" rel="noopener">+91 95678 3837</a><br>
+        WhatsApp (Backup): <a href="https://wa.me/919496341253" target="_blank" rel="noopener">+91 94963 41253</a><br>
+        Email: <a href="mailto:chiraath.official@hotmail.com">chiraath.official@hotmail.com</a><br>
+        Instagram: <a href="https://instagram.com/chiraath2025" target="_blank" rel="noopener">@chiraath2025</a>
+      </div>
+    </details>
+
+    
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('shareBtn');
+  btn.addEventListener('click', async () => {
+    const url = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: document.title, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        btn.textContent = "Link Copied";
+        setTimeout(() => btn.textContent = "Share", 1200);
+      }
+    } catch (e) {}
+  });
+</script>
