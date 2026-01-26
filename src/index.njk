@@ -65,7 +65,7 @@ title: CHIRAATH
 
   {% macro card(p) %}
     <div class="card">
-      <img src="{{ p.data.images[0].image }}" alt="{{ p.data.title }}">
+      <img src="{{ p.data.images[0] }}" alt="{{ p.data.title }}">
       <div class="code">{{ p.data.code }}</div>
       <strong>{{ p.data.title }}</strong>
 
