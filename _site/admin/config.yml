@@ -34,3 +34,13 @@ collections:
         field: { label: "Image", name: "image", widget: "image" }
 
       - { label: "Product Video URL (optional)", name: "video", widget: "string", required: false }
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Site (Cover + Logo)"
+        file: "src/settings/site.json"
+        fields:
+          - { label: "Cover Image", name: "cover", widget: "image", required: false }
+          - { label: "Logo Image", name: "logo", widget: "image", required: false }
+          - { label: "Tagline", name: "tagline", widget: "string", required: false }
