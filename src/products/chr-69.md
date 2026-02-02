@@ -1,0 +1,12 @@
+---
+code: CHR-69
+title: Soft Cotton Silk Saree
+category: Saree
+color: Teal Blue
+price: 1900
+offer_price: 1399
+in_stock: true
+hidden: false
+images:
+  - /images/img-20250922-wa0045.jpg
+---
