@@ -1,0 +1,8 @@
+# macOS junk
+.DS_Store
+
+# dependencies
+node_modules/
+
+# Eleventy build output
+_site/
