@@ -1,0 +1,13 @@
+---
+code: CHR-83
+title: Soft Cotton Printed co-ord/salwar set
+category: Salwar
+color: White
+size: M, XL
+price: 650
+offer_price: 599
+in_stock: true
+hidden: false
+images:
+  - /images/chr-83.jpeg
+---
