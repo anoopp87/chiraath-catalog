@@ -1,0 +1,482 @@
+{% set whatsapp_main = "919567883837" %}
+{% set whatsapp_backup = "919496341253" %}
+{% set order_email = "chiraath.official@hotmail.com" %}
+
+<style>
+  :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background: linear-gradient(180deg, #faf7f2 0%, #ffffff 55%, #fbfbfb 100%);
+    color:var(--text);
+  }
+
+  .wrap{
+    max-width:980px;
+    margin:14px auto 18px;
+    padding:16px;
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  }
+
+.cover{
+  width:100%;
+  height:auto;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  object-position: 50% 28%;
+  border-radius:18px;
+  border:1px solid rgba(0,0,0,0.08);
+  margin-bottom:12px;
+}
+
+@media(min-width:768px){
+  .cover{ height:300px; }
+}
+
+  .muted{color:var(--muted)}
+
+  .btn{
+    display:block;
+    padding:12px;
+    border:1px solid var(--border2);
+    border-radius:14px;
+    text-align:center;
+    text-decoration:none;
+    color:var(--text);
+    margin-bottom:10px;
+    font-weight:800;
+    background:#fff;
+  }
+
+  .btn.whatsapp{
+    background:#25D366;
+    border-color:#25D366;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+  .btn.whatsapp:hover{filter: brightness(0.95);}
+  .btn.whatsapp svg{width:18px;height:18px;fill:#fff;flex:0 0 auto;}
+
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
+  .chipbtn{
+    appearance:none;
+    background:var(--chip);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:9px 12px;
+    font-size:13px;
+    font-weight:750;
+    cursor:pointer;
+  }
+  .chipbtn.active{background:#111;color:#fff;border-color:#111}
+
+  .search{margin:10px 0 8px}
+  .search input{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    font-size:14px;
+    background:#fff;
+  }
+
+  .sortselect{
+    padding:12px 14px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    font-size:14px;
+    background:#fff;
+    font-weight:700;
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr)}}
+
+  .cardlink{color:inherit;text-decoration:none;display:block}
+  .card{
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:10px;
+    background:#fff;
+  }
+  .card:hover{border-color:#d7d7d7}
+
+  .imgwrap{position:relative}
+  .card img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    object-position:50% 18%;
+    border-radius:12px;
+    background:#f3f3f3;
+  }
+
+  .oos{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:#111;
+    color:#fff;
+    font-size:12px;
+    font-weight:900;
+    border-radius:999px;
+    padding:6px 10px;
+  }
+
+  .code{font-size:12px;color:var(--muted);margin-top:8px}
+  .price{margin-top:6px}
+  .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
+
+  .title{font-size:15px;font-weight:600;line-height:1.3;}
+</style>
+
+<div class="wrap">
+
+  {% if site.cover %}
+    <img class="cover" src="{{ site.cover }}" alt="CHIRAATH cover">
+  {% endif %}
+
+  <a class="btn whatsapp" href="https://wa.me/{{ whatsapp_main }}" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M20.52 3.48A11.82 11.82 0 0 0 12.01 0C5.39 0 .01 5.38.01 12c0 2.11.55 4.17 1.6 6.0L0 24l6.2-1.63A11.94 11.94 0 0 0 12.01 24C18.63 24 24 18.62 24 12c0-3.2-1.25-6.2-3.48-8.52zM12.01 22a9.94 9.94 0 0 1-5.07-1.39l-.36-.21-3.68.97.98-3.59-.24-.37A9.9 9.9 0 0 1 2.01 12C2.01 6.49 6.5 2 12.01 2c2.65 0 5.14 1.03 7.01 2.9A9.85 9.85 0 0 1 22.01 12c0 5.51-4.49 10-10 10zm5.55-7.45c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.53.07-.8.38-.27.3-1.05 1.03-1.05 2.52 0 1.49 1.08 2.93 1.23 3.13.15.2 2.13 3.25 5.16 4.56.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.77-.72 2.02-1.41.25-.69.25-1.28.18-1.4-.07-.12-.27-.2-.57-.35z"/>
+</svg>
+    WhatsApp Order
+  </a>
+
+<div class="chips">
+  <a class="chipbtn {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" href="/">All</a>
+  <a class="chipbtn {% if page.url.startsWith('/sarees') %}active{% endif %}" href="/sarees/">Sarees</a>
+  <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
+</div>
+
+  <div class="search">
+    <input id="searchBox" type="search" placeholder="Search by code or name…">
+  </div>
+
+  <div class="sortbar" style="margin:10px 0 12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+    <div class="muted" style="font-weight:700;">Sort</div>
+    <select id="sortSelect" class="sortselect">
+      <option value="newest" selected>Newest</option>
+      <option value="price_asc">Price: Low → High</option>
+      <option value="price_desc">Price: High → Low</option>
+    </select>
+  </div>
+
+  {% macro card(p) %}
+    {% if p.data.images and p.data.images.length %}
+  {% set hero = p.data.images[0] %}
+{% else %}
+  {% set hero = p.data.image %}
+{% endif %}
+    <div class="card">
+      <div class="imgwrap">
+        {% if hero %}
+          <img src="{{ hero }}" alt="{{ p.data.title }}">
+        {% else %}
+          <img src="/images/cover.jpg" alt="{{ p.data.title }}">
+        {% endif %}
+        {% if p.data.in_stock == false %}
+          <div class="oos">Out of stock</div>
+        {% endif %}
+      </div>
+
+      <div class="code">{{ p.data.code }}</div>
+      <div class="title">{{ p.data.title }}</div>
+
+      <div class="price">
+        {% if p.data.offer_price %}
+          <span class="old">₹{{ p.data.price }}</span><strong>₹{{ p.data.offer_price }}</strong>
+        {% else %}
+          <strong>₹{{ p.data.price }}</strong>
+        {% endif %}
+      </div>
+    </div>
+  {% endmacro %}
+
+  <div class="grid">
+  {% for p in prods %}
+    {% if not p.data.hidden %}
+      {% set displayPrice = p.data.offer_price or p.data.price or 0 %}
+      <div class="product-item"
+           data-category="{{ p.data.category }}"
+           data-stock="{% if p.data.in_stock == false %}0{% else %}1{% endif %}"
+           data-search="{{ (p.data.code ~ ' ' ~ p.data.title) | lower }}"
+           data-price="{{ displayPrice }}"
+           data-orig="{{ loop.index0 }}">
+        <a class="cardlink" href="{{ p.url }}">{{ card(p) }}</a>
+      </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+
+<nav style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+  {% if pagination.href.previous %}
+    <a class="btn" data-page-link style="max-width:140px" href="{{ pagination.href.previous }}">← Prev</a>
+  {% endif %}
+
+  {% for href in pagination.hrefs %}
+    {% set pageNum = loop.index %}
+    <a class="btn" data-page-link
+       style="max-width:60px; padding:10px 0; {% if pagination.pageNumber == loop.index0 %}background:#111;color:#fff;border-color:#111{% endif %}"
+       href="{{ href }}">
+      {{ pageNum }}
+    </a>
+  {% endfor %}
+
+  {% if pagination.href.next %}
+    <a class="btn" data-page-link style="max-width:140px" href="{{ pagination.href.next }}">Next →</a>
+  {% endif %}
+</nav>
+
+  <div style="margin-top:28px">
+    {% include "black-footer.njk" %}
+  </div>
+
+</div>
+
+<script>
+  const grid = document.querySelector('.grid');
+  const items = Array.from(document.querySelectorAll('.product-item'));
+  const searchBox = document.getElementById('searchBox');
+  const sortSelect = document.getElementById('sortSelect');
+
+  function getStateFromUrl(){
+    const p = new URLSearchParams(window.location.search);
+    return {
+      q: p.get('q') || '',
+      sort: p.get('sort') || 'newest',
+    };
+  }
+
+  function setStateToUrl(q, sort){
+    const p = new URLSearchParams();
+    if (q && q.trim()) p.set('q', q.trim());
+    if (sort && sort !== 'newest') p.set('sort', sort);
+
+    const qs = p.toString();
+    const newUrl = window.location.pathname + (qs ? `?${qs}` : '');
+    history.replaceState(null, '', newUrl);
+
+    syncPaginationLinks(qs);
+  }
+
+  function syncPaginationLinks(qs){
+    document.querySelectorAll('a[data-page-link]').forEach(a => {
+      const base = a.getAttribute('href').split('?')[0];
+      a.setAttribute('href', base + (qs ? `?${qs}` : ''));
+    });
+  }
+
+  function applySort(){
+    if (!grid) return;
+    const mode = sortSelect ? sortSelect.value : "newest";
+
+    const sorted = [...items].sort((a,b) => {
+      // keep in-stock first
+      const aStock = Number(a.dataset.stock || "1");
+      const bStock = Number(b.dataset.stock || "1");
+      if (aStock !== bStock) return bStock - aStock;
+
+      if (mode === "price_asc") {
+        return Number(a.dataset.price || "0") - Number(b.dataset.price || "0");
+      }
+      if (mode === "price_desc") {
+        return Number(b.dataset.price || "0") - Number(a.dataset.price || "0");
+      }
+
+      // newest (original order within THIS page)
+      return Number(a.dataset.orig || "0") - Number(b.dataset.orig || "0");
+    });
+
+    sorted.forEach(el => grid.appendChild(el));
+  }
+
+  function applyView(pushUrl = true){
+    const q = (searchBox?.value || '').trim().toLowerCase();
+    const sort = sortSelect ? sortSelect.value : 'newest';
+
+    items.forEach(i => {
+      const text = (i.dataset.search || '');
+      const matchQ = (!q || text.includes(q));
+      i.style.display = matchQ ? '' : 'none';
+    });
+
+    applySort();
+    if (pushUrl) setStateToUrl(q, sort);
+  }
+
+  // Restore state on load
+  (function init(){
+    const st = getStateFromUrl();
+    if (searchBox) searchBox.value = st.q;
+    if (sortSelect) sortSelect.value = st.sort;
+    applyView(true);
+  })();
+
+  // Events
+  searchBox?.addEventListener('input', () => applyView(true));
+  sortSelect?.addEventListener('change', () => applyView(true));
+</script>
+<!-- Floating WhatsApp Button -->
+<a
+  href="https://wa.me/{{ whatsapp_main }}"
+  class="wa-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="WhatsApp Order"
+>
+  <!-- Real WhatsApp Logo (Font Awesome SVG path) -->
+  <svg viewBox="0 0 448 512" aria-hidden="true">
+    <path fill="white" d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 438.7c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.7 57.4 2.8 3.7 39.2 59.9 95 84 13.3 5.7 23.7 9.1 31.8 11.6 13.4 4.3 25.6 3.7 35.2 2.3 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.4-5-3.8-10.5-6.6z"/>
+  </svg>
+</a>
+
+<style>
+.wa-float{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:56px;
+  height:56px;
+  background:#25D366;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  box-shadow:0 10px 24px rgba(0,0,0,.28);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.wa-float svg{
+  width:28px;
+  height:28px;
+  display:block;
+}
+
+.wa-float:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(0,0,0,.32);
+}
+/* ===== Premium Polish (Index) ===== */
+:root{
+  --radius-xl: 22px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --shadow-soft: 0 12px 30px rgba(0,0,0,.08);
+  --shadow-card: 0 10px 24px rgba(0,0,0,.10);
+  --border-soft: rgba(0,0,0,.08);
+  --border-softer: rgba(0,0,0,.06);
+}
+
+.wrap{
+  background: rgba(255,255,255,.86);
+  border: 1px solid var(--border-softer);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+}
+
+.cover{
+  height: auto;
+  aspect-ratio: 16 / 6;          /* Premium banner ratio */
+  object-fit: cover;
+  object-position: 50% 22%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+}
+
+.btn{
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.10);
+}
+
+.btn.whatsapp{
+  box-shadow: 0 10px 22px rgba(37,211,102,.25);
+}
+.btn.whatsapp:hover{
+  filter: brightness(.97);
+  box-shadow: 0 14px 28px rgba(37,211,102,.30);
+}
+
+.chipbtn{
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 14px rgba(0,0,0,.06);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.chipbtn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.10);
+}
+.chipbtn.active{
+  box-shadow: 0 12px 24px rgba(0,0,0,.16);
+}
+
+.search input,
+.sortselect{
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+  transition: box-shadow .12s ease, border-color .12s ease;
+}
+.search input:focus,
+.sortselect:focus{
+  outline: none;
+  border-color: rgba(0,0,0,.18);
+  box-shadow: 0 14px 28px rgba(0,0,0,.10);
+}
+
+.grid{ gap: 14px; }
+
+.card{
+  border: 1px solid var(--border-softer);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
+}
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  border-color: rgba(0,0,0,.10);
+}
+.card img{
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+}
+
+.title{ font-size: 15px; font-weight: 700; letter-spacing: .1px; }
+.price-main{ font-weight: 900; }
+.code{ letter-spacing: .2px; }
+.chipbtn{
+  text-decoration:none;
+  color:inherit;
+  display:inline-block;
+}
+</style>
+<!-- Netlify Identity -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", () => {
+      if (window.location.hash.includes("invite_token")) {
+        window.netlifyIdentity.open("signup");
+      }
+    });
+  }
+</script>

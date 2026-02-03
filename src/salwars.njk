@@ -1,0 +1,12 @@
+---
+title: Salwars | CHIRAATH
+
+pagination:
+  data: collections.salwarsSorted
+  size: 12
+  alias: prods
+
+permalink: "{% if pagination.pageNumber == 0 %}salwars/index.html{% else %}salwars/page/{{ pagination.pageNumber + 1 }}/index.html{% endif %}"
+---
+
+{% include "catalog.njk" %}
