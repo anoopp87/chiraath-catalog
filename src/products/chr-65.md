@@ -2,6 +2,7 @@
 code: CHR-65
 title: Mulmul Cotton Saree Collection
 category: Saree
+color: " "
 price: 1000
 offer_price: 900
 in_stock: true
