@@ -229,24 +229,24 @@ permalink: "{% if pagination.pageNumber == 0 %}index.html{% else %}page/{{ pagin
   {% endfor %}
   </div>
 
-  <nav style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-    {% if pagination.href.previous %}
-      <a class="btn" style="max-width:140px" href="{{ pagination.href.previous }}">← Prev</a>
-    {% endif %}
+<nav style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+  {% if pagination.href.previous %}
+    <a class="btn" data-page-link style="max-width:140px" href="{{ pagination.href.previous }}">← Prev</a>
+  {% endif %}
 
-    {% for href in pagination.hrefs %}
-      {% set pageNum = loop.index %}
-      <a class="btn"
-         style="max-width:60px; padding:10px 0; {% if pagination.pageNumber == loop.index0 %}background:#111;color:#fff;border-color:#111{% endif %}"
-         href="{{ href }}">
-        {{ pageNum }}
-      </a>
-    {% endfor %}
+  {% for href in pagination.hrefs %}
+    {% set pageNum = loop.index %}
+    <a class="btn" data-page-link
+       style="max-width:60px; padding:10px 0; {% if pagination.pageNumber == loop.index0 %}background:#111;color:#fff;border-color:#111{% endif %}"
+       href="{{ href }}">
+      {{ pageNum }}
+    </a>
+  {% endfor %}
 
-    {% if pagination.href.next %}
-      <a class="btn" style="max-width:140px" href="{{ pagination.href.next }}">Next →</a>
-    {% endif %}
-  </nav>
+  {% if pagination.href.next %}
+    <a class="btn" data-page-link style="max-width:140px" href="{{ pagination.href.next }}">Next →</a>
+  {% endif %}
+</nav>
 
   <div style="margin-top:28px">
     {% include "black-footer.njk" %}
@@ -262,27 +262,64 @@ permalink: "{% if pagination.pageNumber == 0 %}index.html{% else %}page/{{ pagin
   const searchBox = document.getElementById('searchBox');
   const sortSelect = document.getElementById('sortSelect');
 
+  function getStateFromUrl(){
+    const p = new URLSearchParams(window.location.search);
+    return {
+      cat: p.get('cat') || 'all',
+      q: p.get('q') || '',
+      sort: p.get('sort') || 'newest',
+    };
+  }
+
+  function setStateToUrl(cat, q, sort){
+    const p = new URLSearchParams();
+
+    if (cat && cat !== 'all') p.set('cat', cat);
+    if (q && q.trim()) p.set('q', q.trim());
+    if (sort && sort !== 'newest') p.set('sort', sort);
+
+    const qs = p.toString();
+    const newUrl = window.location.pathname + (qs ? `?${qs}` : '');
+    history.replaceState(null, '', newUrl);
+
+    syncPaginationLinks(qs);
+  }
+
+  function syncPaginationLinks(qs){
+    document.querySelectorAll('a[data-page-link]').forEach(a => {
+      const base = a.getAttribute('href').split('?')[0];
+      a.setAttribute('href', base + (qs ? `?${qs}` : ''));
+    });
+  }
+
   function applySort(){
     const mode = sortSelect ? sortSelect.value : "newest";
 
     const sorted = [...items].sort((a,b) => {
+      // keep in-stock first
       const aStock = Number(a.dataset.stock || "1");
       const bStock = Number(b.dataset.stock || "1");
       if (aStock !== bStock) return bStock - aStock;
 
-      if (mode === "price_asc") return Number(a.dataset.price || "0") - Number(b.dataset.price || "0");
-      if (mode === "price_desc") return Number(b.dataset.price || "0") - Number(a.dataset.price || "0");
+      if (mode === "price_asc") {
+        return Number(a.dataset.price || "0") - Number(b.dataset.price || "0");
+      }
+      if (mode === "price_desc") {
+        return Number(b.dataset.price || "0") - Number(a.dataset.price || "0");
+      }
 
+      // newest (original order within THIS page)
       return Number(a.dataset.orig || "0") - Number(b.dataset.orig || "0");
     });
 
     sorted.forEach(el => grid.appendChild(el));
   }
 
-  function applyFilters(){
+  function applyFilters(pushUrl = true){
     const active = document.querySelector('.chipbtn.active');
     const f = active ? active.dataset.filter : 'all';
     const q = (searchBox.value || '').trim().toLowerCase();
+    const sort = sortSelect ? sortSelect.value : 'newest';
 
     items.forEach(i => {
       const cat = i.dataset.category || '';
@@ -293,19 +330,42 @@ permalink: "{% if pagination.pageNumber == 0 %}index.html{% else %}page/{{ pagin
     });
 
     applySort();
+
+    if (pushUrl) setStateToUrl(f, q, sort);
   }
 
+  // Restore state on load
+  (function init(){
+    const st = getStateFromUrl();
+
+    // set chip
+    const chip = Array.from(btns).find(b => (b.dataset.filter || '') === st.cat);
+    if (chip) {
+      btns.forEach(b => b.classList.remove('active'));
+      chip.classList.add('active');
+    }
+
+    // set search
+    if (searchBox) searchBox.value = st.q;
+
+    // set sort
+    if (sortSelect) sortSelect.value = st.sort;
+
+    applyFilters(true);
+  })();
+
+  // Events
   btns.forEach(btn => btn.addEventListener('click', () => {
     btns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    applyFilters();
+    applyFilters(true);
   }));
 
-  searchBox.addEventListener('input', applyFilters);
+  searchBox.addEventListener('input', () => applyFilters(true));
 
-  if (sortSelect) sortSelect.addEventListener('change', applyFilters);
-
-  applySort();
+  if (sortSelect) {
+    sortSelect.addEventListener('change', () => applyFilters(true));
+  }
 </script>
 <!-- Floating WhatsApp Button -->
 <a
