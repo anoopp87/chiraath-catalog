@@ -1,0 +1,166 @@
+{# src/_includes/black-footer.njk #}
+
+<style>
+  .sf-wrap{margin-top:22px}
+
+  .sf{
+    background:#0b0b0c;
+    color:rgba(255,255,255,.92);
+    border-radius:18px;
+    padding:18px 16px;
+  }
+
+  .sf a{color:rgba(255,255,255,.92); text-decoration:none}
+  .sf a:hover{text-decoration:underline}
+
+  .sf-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    align-items:start;
+  }
+
+  @media(min-width:900px){
+    .sf-grid{grid-template-columns:1.25fr 1fr 1fr}
+  }
+
+  .sf h3{
+    margin:0 0 10px;
+    font-size:14px;
+    letter-spacing:.2px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+  }
+
+  .sf p, .sf li{
+    margin:0;
+    font-size:13px;
+    line-height:1.65;
+    color:rgba(255,255,255,.78);
+  }
+
+  .sf ul{margin:0; padding-left:16px}
+  .sf li + li{margin-top:6px}
+
+  .sf-links{display:flex; flex-direction:column; gap:10px}
+  .sf-chip{
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-start;
+    gap:8px;
+    padding:10px 12px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    background:rgba(255,255,255,.06);
+    font-weight:800;
+    font-size:13px;
+  }
+  .sf-chip:hover{background:rgba(255,255,255,.10)}
+
+  /* Policies accordion */
+  .sf details{
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    background:rgba(255,255,255,.06);
+    padding:10px 12px;
+  }
+  .sf details + details{margin-top:10px}
+
+  .sf details summary{
+    cursor:pointer;
+    font-weight:900;
+    list-style:none;
+    color:rgba(255,255,255,.92);
+  }
+  .sf details summary::-webkit-details-marker{display:none}
+  .sf details summary:after{content:"+"; float:right; opacity:.8}
+  .sf details[open] summary:after{content:"–"}
+
+  .sf .faq-content{
+    margin-top:10px;
+    font-size:13px;
+    line-height:1.65;
+    color:rgba(255,255,255,.78);
+  }
+
+  .sf-copy{
+    text-align:center;
+    margin-top:10px;
+    font-size:12px;
+    color:rgba(0,0,0,.45);
+  }
+</style>
+
+<div class="sf-wrap">
+  <footer class="sf">
+    <div class="sf-grid">
+
+      <section>
+        <h3>About Chiraath</h3>
+        <ul>
+          <li>Simple • Stylish • Comfortable, and affordable for everyone.</li>
+          <li>Curated boutique for Designer Sarees, Silk Sarees, and Premium Salwar Materials.</li>
+          <li>Timeless ethnic wear for weddings, festivals, and everyday elegance.</li>
+          <li>Hand-selected collections with a focus on fabric quality.</li>
+          <li>Free shipping across Kerala.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Policies</h3>
+
+        <details id="policy-howto">
+          <summary>How to Order</summary>
+          <div class="faq-content">
+            Step 1: Select your favorite piece from our gallery.<br>
+            Step 2: Send a screenshot via WhatsApp or Email.<br>
+            Step 3: We confirm price and availability.<br>
+            Step 4: Your order is shipped within 48 hours of payment.
+          </div>
+        </details>
+
+        <details id="policy-return">
+          <summary>Return & Exchange Policy</summary>
+          <div class="faq-content">
+            • Returns accepted only for damaged items.<br>
+            • 360° unpacking video mandatory for refund claims.<br>
+            • Issues must be reported within 24 hours of delivery.<br>
+            • Items must be shipped back within 7 days of approval.<br>
+            • Must be unused, unwashed, with original tags.
+          </div>
+        </details>
+
+        <details id="policy-care">
+          <summary>Fabric & Care Information</summary>
+          <div class="faq-content">
+            • Sarees include unstitched blouse piece.<br>
+            • Salwar materials are free-size for custom stitching.<br>
+            • Premium Silk, Cotton & Designer fabrics.<br>
+            • Dry clean recommended for first wash.
+          </div>
+        </details>
+      </section>
+
+      <section>
+        <h3>Contact</h3>
+        <div class="sf-links">
+          <a class="sf-chip" href="https://wa.me/{{ whatsapp_main }}" target="_blank" rel="noopener">
+            WhatsApp (Main): +91 95678 3837
+          </a>
+          <a class="sf-chip" href="https://wa.me/{{ whatsapp_backup }}" target="_blank" rel="noopener">
+            WhatsApp (Backup): +91 94963 41253
+          </a>
+          <a class="sf-chip" href="mailto:{{ order_email }}">
+            Email: {{ order_email }}
+          </a>
+          <a class="sf-chip" href="https://instagram.com/chiraath2025" target="_blank" rel="noopener">
+            Instagram: @chiraath2025
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </footer>
+
+  <div class="sf-copy">© CHIRAATH. All rights reserved.</div>
+</div>
