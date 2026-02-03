@@ -6,3 +6,5 @@ node_modules/
 
 # Eleventy build output
 _site/.DS_Store
+_site/
+_site/
