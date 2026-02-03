@@ -1,0 +1,12 @@
+---
+code: CHR-95
+title: Chinon Silk Saree
+category: Saree
+color: Black
+price: 1399
+offer_price: 1250
+in_stock: true
+hidden: false
+images:
+  - /images/chr-95.jpeg
+---
