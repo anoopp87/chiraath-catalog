@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-51
 title: Mull Cotton Floral print salwar with lace detailing
 category: Salwar

@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-80
 title: Rayon Multicolored Printed Kurta Set
 category: Salwar

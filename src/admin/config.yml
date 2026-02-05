@@ -19,13 +19,57 @@ collections:
     fields:
       - { label: "Code", name: "code", widget: "string" }
       - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["Saree","Salwar"] }
-      - { label: "Color (optional)", name: "color", widget: "string", required: false }
-      - { label: "Size (optional)", name: "size", widget: "string", required: false }
-      - { label: "Price (₹)", name: "price", widget: "number", required: false, value_type: "int" }
-      - { label: "Offer Price (₹)", name: "offer_price", widget: "number", required: false, value_type: "int" }
-      - { label: "In Stock", name: "in_stock", widget: "boolean", default: true }
-      - { label: "Hide Product", name: "hidden", widget: "boolean", default: false }
+      - {
+          label: "Date",
+          name: "date",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          required: false,
+        }
+      - {
+          label: "Category",
+          name: "category",
+          widget: "select",
+          options: ["Saree", "Salwar"],
+        }
+      - {
+          label: "Color (optional)",
+          name: "color",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Size (optional)",
+          name: "size",
+          widget: "string",
+          required: false,
+        }
+      - {
+          label: "Price (₹)",
+          name: "price",
+          widget: "number",
+          required: false,
+          value_type: "int",
+        }
+      - {
+          label: "Offer Price (₹)",
+          name: "offer_price",
+          widget: "number",
+          required: false,
+          value_type: "int",
+        }
+      - {
+          label: "In Stock",
+          name: "in_stock",
+          widget: "boolean",
+          default: true,
+        }
+      - {
+          label: "Hide Product",
+          name: "hidden",
+          widget: "boolean",
+          default: false,
+        }
 
       - label: "Images"
         name: "images"
@@ -33,7 +77,12 @@ collections:
         min: 1
         field: { label: "Image", name: "image", widget: "image" }
 
-      - { label: "Product Video URL (optional)", name: "video", widget: "string", required: false }
+      - {
+          label: "Product Video URL (optional)",
+          name: "video",
+          widget: "string",
+          required: false,
+        }
   - name: "settings"
     label: "Site Settings"
     files:
@@ -41,6 +90,21 @@ collections:
         label: "Site (Cover + Logo)"
         file: "src/settings/site.json"
         fields:
-          - { label: "Cover Image", name: "cover", widget: "image", required: false }
-          - { label: "Logo Image", name: "logo", widget: "image", required: false }
-          - { label: "Tagline", name: "tagline", widget: "string", required: false }
+          - {
+              label: "Cover Image",
+              name: "cover",
+              widget: "image",
+              required: false,
+            }
+          - {
+              label: "Logo Image",
+              name: "logo",
+              widget: "image",
+              required: false,
+            }
+          - {
+              label: "Tagline",
+              name: "tagline",
+              widget: "string",
+              required: false,
+            }

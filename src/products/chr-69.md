@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-69
 title: Soft Cotton Silk Saree
 category: Saree

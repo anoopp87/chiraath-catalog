@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-68
 title: Soft Muslin Cotton 3 piece set
 category: Salwar

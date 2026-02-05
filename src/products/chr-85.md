@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-85
 title: Linen Blend Salwar set with printed detailing
 category: Salwar

@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-70
 title: Tussar Silk Saree Collection
 category: Saree

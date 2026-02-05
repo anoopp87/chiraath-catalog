@@ -1,4 +1,5 @@
 ---
+date: 2026-01-31
 code: CHR-95
 title: Chinon Silk Saree
 category: Saree

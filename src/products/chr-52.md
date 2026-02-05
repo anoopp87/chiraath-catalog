@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-52
 title: Chanderi Soft Silk Salwar Set
 category: Salwar

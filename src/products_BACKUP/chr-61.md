@@ -1,0 +1,12 @@
+---
+code: CHR-61
+title: Cotton Saree
+category: Saree
+color: Pink
+price: 750
+offer_price: 650
+in_stock: true
+hidden: false
+images:
+  - /images/chr-61.jpeg
+---

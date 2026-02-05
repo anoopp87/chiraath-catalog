@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-76
 title: Soft Cotton Salwar Set (plus size)
 category: Salwar

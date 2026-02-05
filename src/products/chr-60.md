@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-60
 title: Imported Rayon Salwar Set
 category: Salwar

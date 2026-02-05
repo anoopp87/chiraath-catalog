@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-56
 title: Pakistani Semi Silk Blend Salwar Set
 category: Salwar

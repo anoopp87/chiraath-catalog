@@ -1,0 +1,13 @@
+---
+code: CHR-85
+title: Linen Blend Salwar set with printed detailing
+category: Salwar
+color: Lavender/Pastel
+size: M, L, XXL
+price: 1495
+offer_price: 1050
+in_stock: true
+hidden: false
+images:
+  - /images/chr-85.jpg
+---

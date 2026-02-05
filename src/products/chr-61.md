@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-61
 title: Cotton Saree
 category: Saree

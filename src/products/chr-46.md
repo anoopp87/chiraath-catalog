@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-46
 title: Tussar Embroidery Saree
 category: Saree

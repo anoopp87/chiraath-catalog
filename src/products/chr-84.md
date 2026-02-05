@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-84
 title: Soft Cotton Salwar Set with Ajrakh print
 category: Salwar

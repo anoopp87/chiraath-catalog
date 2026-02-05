@@ -1,4 +1,5 @@
 ---
+date: 2026-01-31
 code: CHR-92
 title: Jute Silk Kurti
 category: Salwar

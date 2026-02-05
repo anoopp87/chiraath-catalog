@@ -1,4 +1,5 @@
 ---
+date: 2026-01-31
 code: CHR-65
 title: Mulmul Cotton Saree Collection
 category: Saree

@@ -1,4 +1,5 @@
 ---
+date: 2026-01-01
 code: CHR-67
 title: Cotton Blend Saree
 category: Saree

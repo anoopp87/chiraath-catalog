@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-79
 title: Silk Blend Salwar Suit - 3 Piece Set
 category: Salwar

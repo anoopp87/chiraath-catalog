@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-83
 title: Soft Cotton Printed co-ord/salwar set
 category: Salwar

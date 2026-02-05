@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-78
 title: Linen Blend Soft Cotton Salwar - 3 Piece Set
 category: Salwar

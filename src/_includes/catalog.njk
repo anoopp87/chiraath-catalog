@@ -158,17 +158,20 @@
   <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
 </div>
 
-  <div class="search">
-    <input id="searchBox" type="search" placeholder="Search by code or name…">
-  </div>
+  <div class="controls">
+    <div class="control">
+      <div class="ctl-label muted">Search this page</div>
+      <input id="searchBox" class="ctl-input" type="search" placeholder="Type code or name…">
+    </div>
 
-  <div class="sortbar" style="margin:10px 0 12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-    <div class="muted" style="font-weight:700;">Sort</div>
-    <select id="sortSelect" class="sortselect">
-      <option value="newest" selected>Newest</option>
-      <option value="price_asc">Price: Low → High</option>
-      <option value="price_desc">Price: High → Low</option>
-    </select>
+    <div class="control control-sort">
+      <div class="ctl-label muted">Sort this page</div>
+      <select id="sortSelect" class="sortselect ctl-input">
+        <option value="newest" selected>Newest (Default)</option>
+        <option value="price_asc">Price: Low → High</option>
+        <option value="price_desc">Price: High → Low</option>
+      </select>
+    </div>
   </div>
 
   {% macro card(p) %}
@@ -277,11 +280,10 @@
   }
 
   function applySort(){
-    if (!grid) return;
     const mode = sortSelect ? sortSelect.value : "newest";
 
     const sorted = [...items].sort((a,b) => {
-      // keep in-stock first
+      // keep in-stock first (out-of-stock last)
       const aStock = Number(a.dataset.stock || "1");
       const bStock = Number(b.dataset.stock || "1");
       if (aStock !== bStock) return bStock - aStock;
@@ -293,14 +295,14 @@
         return Number(b.dataset.price || "0") - Number(a.dataset.price || "0");
       }
 
-      // newest (original order within THIS page)
+      // newest within THIS page
       return Number(a.dataset.orig || "0") - Number(b.dataset.orig || "0");
     });
 
     sorted.forEach(el => grid.appendChild(el));
   }
 
-  function applyView(pushUrl = true){
+  function applyFilters(pushUrl = true){
     const q = (searchBox?.value || '').trim().toLowerCase();
     const sort = sortSelect ? sortSelect.value : 'newest';
 
@@ -314,18 +316,17 @@
     if (pushUrl) setStateToUrl(q, sort);
   }
 
-  // Restore state on load
   (function init(){
     const st = getStateFromUrl();
     if (searchBox) searchBox.value = st.q;
     if (sortSelect) sortSelect.value = st.sort;
-    applyView(true);
+    applyFilters(true);
   })();
 
-  // Events
-  searchBox?.addEventListener('input', () => applyView(true));
-  sortSelect?.addEventListener('change', () => applyView(true));
+  if (searchBox) searchBox.addEventListener('input', () => applyFilters(true));
+  if (sortSelect) sortSelect.addEventListener('change', () => applyFilters(true));
 </script>
+
 <!-- Floating WhatsApp Button -->
 <a
   href="https://wa.me/{{ whatsapp_main }}"
@@ -345,8 +346,8 @@
   position:fixed;
   right:18px;
   bottom:18px;
-  width:56px;
-  height:56px;
+  width:64px;
+  height:64px;
   background:#25D366;
   border-radius:50%;
   display:flex;
@@ -358,8 +359,8 @@
 }
 
 .wa-float svg{
-  width:28px;
-  height:28px;
+  width:32px;
+  height:32px;
   display:block;
 }
 
@@ -427,7 +428,30 @@
 .chipbtn.active{
   box-shadow: 0 12px 24px rgba(0,0,0,.16);
 }
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:10px 0 12px;
+}
 
+.control{flex:1; min-width:220px}
+.control-sort{flex:0 0 220px}
+
+.ctl-label{
+  font-weight:800;
+  font-size:12px;
+  margin:0 0 6px;
+}
+
+.ctl-input{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  font-size:14px;
+  background:#fff;
+}
 .search input,
 .sortselect{
   border: 1px solid var(--border-soft);

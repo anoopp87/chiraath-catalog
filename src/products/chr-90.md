@@ -1,4 +1,5 @@
 ---
+date: 2026-01-31
 code: CHR-90
 title: Mul Cotton Rainbow Saree
 category: Saree

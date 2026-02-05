@@ -1,4 +1,5 @@
 ---
+date: 2026-01-30
 code: CHR-81
 title: Soft Cotton Salwar 3 Piece set
 category: Salwar

@@ -19,8 +19,8 @@ module.exports = function (eleventyConfig) {
         if (aStock !== bStock) return bStock - aStock;
 
         // Newest first
-        const aDate = new Date(a.date || 0).getTime();
-        const bDate = new Date(b.date || 0).getTime();
+        const aDate = new Date(a.data.date || a.date || 0).getTime();
+        const bDate = new Date(b.data.date || b.date || 0).getTime();
         return bDate - aDate;
       });
   });
@@ -36,8 +36,8 @@ module.exports = function (eleventyConfig) {
         const bStock = b.data.in_stock === false ? 0 : 1;
         if (aStock !== bStock) return bStock - aStock;
 
-        const aDate = new Date(a.date || 0).getTime();
-        const bDate = new Date(b.date || 0).getTime();
+        const aDate = new Date(a.data.date || a.date || 0).getTime();
+        const bDate = new Date(b.data.date || b.date || 0).getTime();
         return bDate - aDate;
       });
   });
@@ -53,8 +53,8 @@ module.exports = function (eleventyConfig) {
         const bStock = b.data.in_stock === false ? 0 : 1;
         if (aStock !== bStock) return bStock - aStock;
 
-        const aDate = new Date(a.date || 0).getTime();
-        const bDate = new Date(b.date || 0).getTime();
+        const aDate = new Date(a.data.date || a.date || 0).getTime();
+        const bDate = new Date(b.data.date || b.date || 0).getTime();
         return bDate - aDate;
       });
   });
