@@ -63,7 +63,26 @@
     gap:8px;
   }
   .btn.whatsapp:hover{filter: brightness(0.95);}
-  .btn.whatsapp svg{width:18px;height:18px;fill:#fff;flex:0 0 auto;}
+  .btn.whatsapp svg{
+  width:18px;
+  height:18px;
+  fill:#fff;
+  flex:0 0 auto;
+}
+
+/* Mobile improvement */
+@media(max-width:640px){
+  .btn.whatsapp{
+    font-size:16px;        /* bigger text */
+    font-weight:900;
+    padding:12px 10px;     /* keeps bar height balanced */
+  }
+
+  .btn.whatsapp svg{
+    width:22px;
+    height:22px;
+  }
+}
 
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
   .chipbtn{
@@ -358,10 +377,26 @@
   transition:transform .2s ease, box-shadow .2s ease;
 }
 
+/* Slightly larger logo */
 .wa-float svg{
-  width:32px;
-  height:32px;
+  width:36px;
+  height:36px;
   display:block;
+}
+
+/* Mobile fine-tuning */
+@media (max-width: 600px){
+  .wa-float{
+    width:68px;
+    height:68px;
+    right:16px;
+    bottom:16px;
+  }
+
+  .wa-float svg{
+    width:38px;
+    height:38px;
+  }
 }
 
 .wa-float:hover{
@@ -484,7 +519,28 @@
   border: 1px solid rgba(0,0,0,.06);
 }
 
-.title{ font-size: 15px; font-weight: 700; letter-spacing: .1px; }
+.title{
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.1px;
+}
+
+/* Mobile readability */
+@media(max-width:640px){
+  .title{
+    font-size:16.5px;
+    line-height:1.35;
+  }
+
+  .price strong{
+    font-size:17px;
+    font-weight:900;
+  }
+
+  .code{
+    font-size:13px;
+  }
+}
 .price-main{ font-weight: 900; }
 .code{ letter-spacing: .2px; }
 .chipbtn{
