@@ -63,29 +63,7 @@
     gap:8px;
   }
   .btn.whatsapp:hover{filter: brightness(0.95);}
-  .btn.whatsapp svg{
-  width:18px;
-  height:18px;
-  fill:#fff;
-  flex:0 0 auto;
-}
-
-/* Mobile improvement */
-/* Mobile improvement */
-@media (max-width: 640px){
-  .btn.whatsapp{
-    font-size:18px;          /* noticeable bump */
-    font-weight:900;
-    line-height:1;           /* prevents height growth */
-    padding:12px 10px;       /* keep bar height same */
-    letter-spacing:.2px;
-  }
-
-  .btn.whatsapp svg{
-    width:24px;              /* bigger logo */
-    height:24px;
-  }
-}
+  .btn.whatsapp svg{width:18px;height:18px;fill:#fff;flex:0 0 auto;}
 
   .chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 6px}
   .chipbtn{
@@ -99,6 +77,110 @@
     cursor:pointer;
   }
   .chipbtn.active{background:#111;color:#fff;border-color:#111}
+
+  /* ===== Tabs + icons (same row) ===== */
+  .chipbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:12px 0 10px;
+  }
+  .chip-actions{display:flex; gap:8px; flex:0 0 auto;}
+  .iconbtn{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    border:1px solid rgba(0,0,0,.10);
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,.06);
+  }
+  .iconbtn svg{width:18px;height:18px}
+  @media(max-width:520px){ .iconbtn{ width:38px; height:38px; } }
+
+  /* Panel shown when user taps icons */
+  .controls-panel{
+    border:1px solid rgba(0,0,0,.08);
+    border-radius:16px;
+    background:#fff;
+    padding:12px;
+    box-shadow: 0 10px 22px rgba(0,0,0,.06);
+    margin:0 0 12px;
+  }
+  /* ===== Controls layout: single row (Search + Clear + Sort) ===== */
+.controls{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;      /* makes label + field align nicely */
+  flex-wrap:wrap;
+}
+
+.control{
+  flex:1;
+  min-width:260px;
+}
+
+.control-sort{
+  flex:0 0 240px;            /* elegant fixed width */
+  min-width:220px;
+}
+
+/* Search row: input + clear on same line */
+.searchrow{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+#searchBox{
+  flex:1;
+  min-width:0;
+}
+
+.mini-clear{
+  margin-top:0;                 /* keep it aligned in-row */
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  border-radius:999px;
+  padding:6px 12px;             /* smaller */
+  font-size:13px;               /* smaller */
+  font-weight:800;              /* still bold, but not huge */
+  cursor:pointer;
+  height:40px;                  /* match input height */
+  white-space:nowrap;
+}
+
+/* Mobile: stack neatly */
+@media (max-width: 720px){
+  .controls{flex-wrap:wrap;}
+  .control-sort{flex:1 1 240px;}
+}
+  .control-sort .label{
+  margin-bottom:4px;
+}
+  .label{font-weight:900; font-size:12px; margin:0 0 6px; color:var(--muted)}
+  .mini-clear{
+    margin-top:8px;
+    border:1px solid rgba(0,0,0,.12);
+    background:#fff;
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:900;
+    cursor:pointer;
+  }
+ .global-info{
+  margin:0 0 12px;
+  padding:10px 12px;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:14px;
+  background: rgba(250,247,242,.85);
+  font-weight:800;
+  color: rgba(0,0,0,.75);
+}
 
   .search{margin:10px 0 8px}
   .search input{
@@ -159,28 +241,6 @@
   .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
 
   .title{font-size:15px;font-weight:600;line-height:1.3;}
-  /* Mobile: make product text easier to read */
-@media (max-width: 640px){
-  .code{
-    font-size:12px;
-    font-weight:700;
-  }
-
-  .title{
-    font-size:16px;
-    font-weight:800;
-    line-height:1.25;
-  }
-
-  .price strong{
-    font-size:16px;
-    font-weight:900;
-  }
-
-  .old{
-    font-size:13px;
-  }
-}
 </style>
 
 <div class="wrap">
@@ -196,27 +256,48 @@
     WhatsApp Order
   </a>
 
-<div class="chips">
-  <a class="chipbtn {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" href="/">All</a>
-  <a class="chipbtn {% if page.url.startsWith('/sarees') %}active{% endif %}" href="/sarees/">Sarees</a>
-  <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
+<div class="chipbar">
+  <div class="chips">
+    <a class="chipbtn {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" href="/">All</a>
+    <a class="chipbtn {% if page.url.startsWith('/sarees') %}active{% endif %}" href="/sarees/">Sarees</a>
+    <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
+  </div>
+
+  <div class="chip-actions">
+    <button class="iconbtn" id="searchToggle" type="button" aria-label="Search">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10 18a8 8 0 1 1 5.3-14.1A8 8 0 0 1 10 18zm11 3-6.2-6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <button class="iconbtn" id="sortToggle" type="button" aria-label="Sort">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
+<div id="controlsPanel" class="controls-panel" hidden>
   <div class="controls">
-    <div class="control">
-      <div class="ctl-label muted">Search this page</div>
-      <input id="searchBox" class="ctl-input" type="search" placeholder="Type code or name…">
-    </div>
+<div class="control">
+  <div class="label">Search by name or code</div>
+  <div class="searchrow">
+    <input id="searchBox" type="search" placeholder="Search by code or product name..." autocomplete="off">
+    <button class="mini-clear" id="clearSearch" type="button">Clear</button>
+  </div>
+</div>
 
     <div class="control control-sort">
-      <div class="ctl-label muted">Sort this page</div>
-      <select id="sortSelect" class="sortselect ctl-input">
+      <div class="label" id="sortLabel">Sort results</div>
+      <select id="sortSelect" class="sortselect">
         <option value="newest" selected>Newest (Default)</option>
-        <option value="price_asc">Price: Low → High</option>
-        <option value="price_desc">Price: High → Low</option>
+        <option value="price_low">Price: Low to High</option>
+        <option value="price_high">Price: High to Low</option>
+        <option value="name_az">Name: A to Z</option>
       </select>
     </div>
   </div>
+</div>
 
   {% macro card(p) %}
     {% if p.data.images and p.data.images.length %}
@@ -249,6 +330,33 @@
     </div>
   {% endmacro %}
 
+{# ===== Global dataset for global search (ALL products) ===== #}
+<script id="allProductsJson" type="application/json">
+[
+{% set first = true %}
+{% for p in collections.productsSorted %}
+  {% if not p.data.hidden %}
+    {% if not first %},{% endif %}
+    {% set first = false %}
+    {
+      "code": {{ (p.data.code or "") | dump | safe }},
+      "title": {{ (p.data.title or "") | dump | safe }},
+      "category": {{ (p.data.category or "") | dump | safe }},
+      "url": {{ (p.url or "") | dump | safe }},
+      "in_stock": {{ (p.data.in_stock != false) | dump | safe }},
+      "base_price": {{ (p.data.price or 0) | dump | safe }},
+      "offer_price": {{ (p.data.offer_price or 0) | dump | safe }},
+      "price": {{ (p.data.offer_price or p.data.price or 0) | dump | safe }},
+      "image": {{ ((p.data.images and p.data.images[0]) or p.data.image or "") | dump | safe }},
+      "orig": {{ loop.index0 | dump | safe }}
+    }
+  {% endif %}
+{% endfor %}
+]
+</script>
+
+<div id="globalInfo" class="global-info" hidden></div>
+
   <div class="grid">
   {% for p in prods %}
     {% if not p.data.hidden %}
@@ -257,6 +365,7 @@
            data-category="{{ p.data.category }}"
            data-stock="{% if p.data.in_stock == false %}0{% else %}1{% endif %}"
            data-search="{{ (p.data.code ~ ' ' ~ p.data.title) | lower }}"
+           data-title="{{ (p.data.title or '') | lower }}"
            data-price="{{ displayPrice }}"
            data-orig="{{ loop.index0 }}">
         <a class="cardlink" href="{{ p.url }}">{{ card(p) }}</a>
@@ -265,7 +374,7 @@
   {% endfor %}
   </div>
 
-<nav style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+<nav id="pager" style="margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
   {% if pagination.href.previous %}
     <a class="btn" data-page-link style="max-width:140px" href="{{ pagination.href.previous }}">← Prev</a>
   {% endif %}
@@ -292,14 +401,146 @@
 
 <script>
   const grid = document.querySelector('.grid');
-  const items = Array.from(document.querySelectorAll('.product-item'));
+  const pager = document.getElementById('pager');
+  const globalInfo = document.getElementById('globalInfo');
+
+  const controlsPanel = document.getElementById('controlsPanel');
+  const searchToggle = document.getElementById('searchToggle');
+  const sortToggle = document.getElementById('sortToggle');
   const searchBox = document.getElementById('searchBox');
   const sortSelect = document.getElementById('sortSelect');
+  const sortLabel = document.getElementById('sortLabel');
+  const clearBtn = document.getElementById('clearSearch');
+
+  // Save original paginated markup so we can restore without breaking anything
+  const originalGridHTML = grid ? grid.innerHTML : '';
+  const originalPagerDisplay = pager ? (pager.style.display || '') : '';
+
+  // Parse the global dataset safely (rendered by Eleventy at build time)
+  let ALL = [];
+  try {
+    ALL = JSON.parse(document.getElementById('allProductsJson')?.textContent || '[]');
+    if (!Array.isArray(ALL)) ALL = [];
+  } catch (e) {
+    ALL = [];
+  }
+
+  function getItems(){
+    return grid ? Array.from(grid.querySelectorAll('.product-item')) : [];
+  }
+
+  function applySort(){
+    if (!grid || !sortSelect) return;
+
+    const mode = sortSelect.value || 'newest';
+    const items = getItems();
+
+    const sorted = [...items].sort((a,b) => {
+      // in-stock first
+      const aStock = Number(a.dataset.stock || '1');
+      const bStock = Number(b.dataset.stock || '1');
+      if (aStock !== bStock) return bStock - aStock;
+
+      if (mode === 'price_low') {
+        return Number(a.dataset.price || '0') - Number(b.dataset.price || '0');
+      }
+      if (mode === 'price_high') {
+        return Number(b.dataset.price || '0') - Number(a.dataset.price || '0');
+      }
+      if (mode === 'name_az') {
+        return String(a.dataset.title || '').localeCompare(String(b.dataset.title || ''));
+      }
+
+      // newest (default): lower orig first
+      return Number(a.dataset.orig || '0') - Number(b.dataset.orig || '0');
+    });
+
+    sorted.forEach(el => grid.appendChild(el));
+  }
+
+  function setMode(isGlobal, q){
+    if (pager) pager.style.display = isGlobal ? 'none' : (originalPagerDisplay || 'flex');
+
+    if (globalInfo) {
+      globalInfo.hidden = !isGlobal;
+      if (isGlobal) globalInfo.textContent = `${getItems().length} results for "${q}"`;
+    }
+
+    if (sortLabel) sortLabel.textContent = 'Sort results';
+  }
+
+  function restorePage(){
+    if (!grid) return;
+    grid.innerHTML = originalGridHTML;
+    if (globalInfo) globalInfo.hidden = true;
+    setMode(false, '');
+    applySort();
+  }
+
+  function renderGlobal(q){
+    if (!grid) return;
+
+    const query = (q || '').trim().toLowerCase();
+    if (!query) {
+      restorePage();
+      return;
+    }
+
+    const matches = ALL.filter(p => {
+      const text = `${p.code || ''} ${p.title || ''}`.toLowerCase();
+      return text.includes(query);
+    });
+
+    grid.innerHTML = '';
+
+    matches.forEach(p => {
+      const inStock = (p.in_stock !== false);
+      const stock = inStock ? 1 : 0;
+
+      const basePrice = Number(p.base_price || 0);
+      const offerPrice = Number(p.offer_price || 0);
+      const displayPrice = offerPrice > 0 ? offerPrice : basePrice;
+
+      const title = String(p.title || '');
+      const code = String(p.code || '');
+      const img = p.image || '/images/cover.jpg';
+      const orig = Number(p.orig || 0);
+
+      const priceHtml = offerPrice > 0
+        ? `<span class="old">₹${basePrice}</span><strong>₹${offerPrice}</strong>`
+        : `<strong>₹${basePrice}</strong>`;
+
+      const html = `
+        <div class="product-item"
+             data-stock="${stock}"
+             data-title="${title.toLowerCase()}"
+             data-search="${(code + ' ' + title).toLowerCase()}"
+             data-price="${displayPrice}"
+             data-orig="${orig}">
+          <a class="cardlink" href="${p.url}">
+            <div class="card">
+              <div class="imgwrap">
+                <img src="${img}" alt="${title}">
+                ${inStock ? '' : '<div class="oos">Out of stock</div>'}
+              </div>
+              <div class="code">${code}</div>
+              <div class="title">${title}</div>
+              <div class="price">${priceHtml}</div>
+            </div>
+          </a>
+        </div>
+      `;
+      grid.insertAdjacentHTML('beforeend', html);
+    });
+
+    setMode(true, q);
+    applySort();
+  }
 
   function getStateFromUrl(){
     const p = new URLSearchParams(window.location.search);
     return {
-      q: p.get('q') || '',
+      q: (p.get('q') || '').trim(),
       sort: p.get('sort') || 'newest',
     };
   }
@@ -313,64 +554,61 @@
     const newUrl = window.location.pathname + (qs ? `?${qs}` : '');
     history.replaceState(null, '', newUrl);
 
-    syncPaginationLinks(qs);
-  }
-
-  function syncPaginationLinks(qs){
+    // Preserve query params when clicking pagination (normal mode)
     document.querySelectorAll('a[data-page-link]').forEach(a => {
       const base = a.getAttribute('href').split('?')[0];
       a.setAttribute('href', base + (qs ? `?${qs}` : ''));
     });
   }
 
-  function applySort(){
-    const mode = sortSelect ? sortSelect.value : "newest";
+  function applyAll(pushUrl=true){
+    const q = (searchBox?.value || '').trim();
+    const sort = sortSelect?.value || 'newest';
 
-    const sorted = [...items].sort((a,b) => {
-      // keep in-stock first (out-of-stock last)
-      const aStock = Number(a.dataset.stock || "1");
-      const bStock = Number(b.dataset.stock || "1");
-      if (aStock !== bStock) return bStock - aStock;
+    if (q) renderGlobal(q);
+    else restorePage();
 
-      if (mode === "price_asc") {
-        return Number(a.dataset.price || "0") - Number(b.dataset.price || "0");
-      }
-      if (mode === "price_desc") {
-        return Number(b.dataset.price || "0") - Number(a.dataset.price || "0");
-      }
-
-      // newest within THIS page
-      return Number(a.dataset.orig || "0") - Number(b.dataset.orig || "0");
-    });
-
-    sorted.forEach(el => grid.appendChild(el));
-  }
-
-  function applyFilters(pushUrl = true){
-    const q = (searchBox?.value || '').trim().toLowerCase();
-    const sort = sortSelect ? sortSelect.value : 'newest';
-
-    items.forEach(i => {
-      const text = (i.dataset.search || '');
-      const matchQ = (!q || text.includes(q));
-      i.style.display = matchQ ? '' : 'none';
-    });
-
-    applySort();
     if (pushUrl) setStateToUrl(q, sort);
   }
 
+  // Controls panel behavior
+function toggleControls(focusEl){
+  if (!controlsPanel) return;
+
+  const willOpen = controlsPanel.hidden;
+  controlsPanel.hidden = !willOpen;
+
+  if (willOpen && focusEl){
+    setTimeout(() => {
+      focusEl.focus();
+      // Premium: select existing text so user can just type and replace
+      if (typeof focusEl.select === 'function') focusEl.select();
+    }, 0);
+  }
+}
+
+  searchToggle?.addEventListener('click', () => toggleControls(searchBox));
+  sortToggle?.addEventListener('click', () => toggleControls(sortSelect));
+  clearBtn?.addEventListener('click', () => {
+    if (searchBox) searchBox.value = '';
+    applyAll(true);
+  });
+
+  searchBox?.addEventListener('input', () => applyAll(true));
+  sortSelect?.addEventListener('change', () => applyAll(true));
+
+  // Init from URL
   (function init(){
     const st = getStateFromUrl();
     if (searchBox) searchBox.value = st.q;
     if (sortSelect) sortSelect.value = st.sort;
-    applyFilters(true);
+
+    // Open controls if there's a query in URL so user understands why pager hides
+    if (controlsPanel && st.q) controlsPanel.hidden = false;
+
+    applyAll(false);
   })();
-
-  if (searchBox) searchBox.addEventListener('input', () => applyFilters(true));
-  if (sortSelect) sortSelect.addEventListener('change', () => applyFilters(true));
 </script>
-
 <!-- Floating WhatsApp Button -->
 <a
   href="https://wa.me/{{ whatsapp_main }}"
@@ -390,8 +628,8 @@
   position:fixed;
   right:18px;
   bottom:18px;
-  width:64px;
-  height:64px;
+  width:56px;
+  height:56px;
   background:#25D366;
   border-radius:50%;
   display:flex;
@@ -402,25 +640,10 @@
   transition:transform .2s ease, box-shadow .2s ease;
 }
 
-/* Slightly larger logo */
 .wa-float svg{
-  width:40px;
-  height:40px;
+  width:28px;
+  height:28px;
   display:block;
-}
-
-@media (max-width: 600px){
-  .wa-float{
-    width:68px;
-    height:68px;
-    right:16px;
-    bottom:16px;
-  }
-
-  .wa-float svg{
-    width:42px;
-    height:42px;
-  }
 }
 
 .wa-float:hover{
@@ -487,30 +710,7 @@
 .chipbtn.active{
   box-shadow: 0 12px 24px rgba(0,0,0,.16);
 }
-.controls{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:10px 0 12px;
-}
 
-.control{flex:1; min-width:220px}
-.control-sort{flex:0 0 220px}
-
-.ctl-label{
-  font-weight:800;
-  font-size:12px;
-  margin:0 0 6px;
-}
-
-.ctl-input{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  font-size:14px;
-  background:#fff;
-}
 .search input,
 .sortselect{
   border: 1px solid var(--border-soft);
@@ -543,34 +743,77 @@
   border: 1px solid rgba(0,0,0,.06);
 }
 
-.title{
-  font-size:15px;
-  font-weight:700;
-  letter-spacing:.1px;
-}
-
-/* Mobile readability */
-@media(max-width:640px){
-  .title{
-    font-size:16.5px;
-    line-height:1.35;
-  }
-
-  .price strong{
-    font-size:17px;
-    font-weight:900;
-  }
-
-  .code{
-    font-size:13px;
-  }
-}
+.title{ font-size: 15px; font-weight: 700; letter-spacing: .1px; }
 .price-main{ font-weight: 900; }
 .code{ letter-spacing: .2px; }
 .chipbtn{
   text-decoration:none;
   color:inherit;
   display:inline-block;
+}
+/* ===== Controls panel polish ===== */
+.controls{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+}
+
+.control{
+  flex:1;
+  min-width:260px;
+}
+
+.control-sort{
+  flex:0 0 260px;
+  min-width:260px;
+}
+
+.controls .label{
+  font-weight:800;
+  font-size:12px;
+  margin:0 0 6px;
+  color: rgba(0,0,0,.70);
+}
+
+#searchBox{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:14px;
+  font-size:14px;
+  background:#fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.05);
+}
+
+#sortSelect{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:14px;
+  font-size:14px;
+  background:#fff;
+  font-weight:800;
+  box-shadow: 0 8px 18px rgba(0,0,0,.05);
+}
+
+/* Put Clear button neatly under the search input */
+.mini-clear{
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  font-weight:900;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.05);
+}
+
+/* Mobile: stack nicely */
+@media (max-width: 640px){
+  .control, .control-sort{
+    min-width:100%;
+    flex: 1 1 100%;
+  }
 }
 </style>
 <!-- Netlify Identity -->
