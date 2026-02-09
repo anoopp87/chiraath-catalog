@@ -4,7 +4,7 @@ code: CHR-54
 title: Linen Floral Print Salwar Set
 category: Salwar
 color: White floral
-size: L, XL
+size: L
 price: 1200
 offer_price: 900
 in_stock: true

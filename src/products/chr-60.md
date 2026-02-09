@@ -13,5 +13,4 @@ images:
   - /images/chr-60.jpeg
   - /images/img-20250922-wa0039.jpg
   - /images/pxl_20251018_104641700~4-1-.jpg
-  - /images/whatsapp-image-2025-12-24-at-22.03.15.jpeg
 ---
