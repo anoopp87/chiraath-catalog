@@ -5,7 +5,7 @@ title: Mulmul Cotton Saree Collection
 category: Saree
 color: " "
 price: 1000
-offer_price: 900
+offer_price: 800
 in_stock: true
 hidden: false
 images:

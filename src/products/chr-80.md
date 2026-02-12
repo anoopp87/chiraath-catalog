@@ -6,7 +6,7 @@ category: Salwar
 color: Printed Multicolored
 size: XXL
 price: 890
-offer_price: 750
+offer_price: 650
 in_stock: true
 hidden: false
 images:

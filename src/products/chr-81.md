@@ -6,7 +6,7 @@ category: Salwar
 color: Coral Pink with Green Floral Print
 size: XXL
 price: 1545
-offer_price: 1050
+offer_price: 950
 in_stock: true
 hidden: false
 images:

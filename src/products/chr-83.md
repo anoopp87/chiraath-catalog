@@ -6,7 +6,7 @@ category: Salwar
 color: White
 size: M, XL
 price: 650
-offer_price: 599
+offer_price: 500
 in_stock: true
 hidden: false
 images:

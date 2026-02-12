@@ -5,7 +5,7 @@ title: Kota Linen Saree
 category: Saree
 color: Rani Pink
 price: 1900
-offer_price: 1650
+offer_price: 1500
 in_stock: true
 hidden: false
 images:

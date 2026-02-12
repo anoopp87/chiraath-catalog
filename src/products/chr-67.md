@@ -5,7 +5,7 @@ title: Cotton Blend Saree
 category: Saree
 color: Cream, Mint Green
 price: 1200
-offer_price: 1099
+offer_price: 900
 in_stock: true
 hidden: false
 images:

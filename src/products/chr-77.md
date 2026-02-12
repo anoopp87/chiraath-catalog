@@ -6,7 +6,7 @@ category: Salwar
 color: Dusty Rose/Pink Shade
 size: M, L
 price: 1500
-offer_price: 1200
+offer_price: 950
 in_stock: true
 hidden: false
 images:

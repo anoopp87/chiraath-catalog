@@ -6,7 +6,7 @@ category: Salwar
 color: Indigo Blue with subtle geometric prints
 size: M, XXL
 price: 1500
-offer_price: 1050
+offer_price: 950
 in_stock: true
 hidden: false
 images:

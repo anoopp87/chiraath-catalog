@@ -5,7 +5,7 @@ title: Tussar Embroidery Saree
 category: Saree
 color: Pink
 price: 1600
-offer_price: 1250
+offer_price: 1200
 in_stock: true
 hidden: false
 images:

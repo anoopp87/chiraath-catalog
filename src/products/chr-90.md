@@ -4,7 +4,7 @@ code: CHR-90
 title: Mul Cotton Rainbow Saree
 category: Saree
 price: 689
-offer_price: 599
+offer_price: 500
 in_stock: true
 hidden: false
 images:

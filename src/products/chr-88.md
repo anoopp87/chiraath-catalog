@@ -5,7 +5,7 @@ title: Cotton Silk Saree
 category: Saree
 color: Green
 price: 1900
-offer_price: 1399
+offer_price: 1200
 in_stock: true
 hidden: false
 images:

@@ -5,7 +5,7 @@ title: Tissue Silk Saree - Floral print
 category: Saree
 color: White with peach floral design
 price: 799
-offer_price: 699
+offer_price: 500
 in_stock: true
 hidden: false
 images:

@@ -6,7 +6,7 @@ category: Salwar
 color: Violet, Mustard, Grey, Pink
 size: M/XL
 price: 1600
-offer_price: 1200
+offer_price: 1100
 in_stock: true
 hidden: false
 images:

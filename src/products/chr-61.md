@@ -5,7 +5,7 @@ title: Cotton Saree
 category: Saree
 color: Pink
 price: 750
-offer_price: 650
+offer_price: 500
 in_stock: true
 hidden: false
 images:

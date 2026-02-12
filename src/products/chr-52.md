@@ -3,10 +3,10 @@ date: 2026-01-01
 code: CHR-52
 title: Chanderi Soft Silk Salwar Set
 category: Salwar
-color: Ocean Blue, Olive Green
+color: Ocean Blue
 size: XL
 price: 1800
-offer_price: 1250
+offer_price: 1100
 in_stock: true
 hidden: false
 images:

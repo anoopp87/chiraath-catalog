@@ -6,7 +6,7 @@ category: Salwar
 color: Peel blue with Turquoise Blend
 size: L, XXL
 price: 650
-offer_price: 580
+offer_price: 500
 in_stock: true
 hidden: false
 images:

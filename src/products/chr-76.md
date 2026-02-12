@@ -6,7 +6,7 @@ category: Salwar
 color: White base with blue floral prints
 size: XL, XXL
 price: 1500
-offer_price: 1050
+offer_price: 999
 in_stock: true
 hidden: false
 images:

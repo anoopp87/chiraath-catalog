@@ -6,7 +6,7 @@ category: Salwar
 color: Wine Red
 size: M
 price: 1400
-offer_price: 1050
+offer_price: 950
 in_stock: true
 hidden: false
 images:

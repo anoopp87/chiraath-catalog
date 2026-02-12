@@ -6,7 +6,7 @@ category: Salwar
 color: Lavender/Pastel
 size: M, L, XXL
 price: 1495
-offer_price: 1050
+offer_price: 950
 in_stock: true
 hidden: false
 images:
