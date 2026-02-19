@@ -6,7 +6,7 @@ category: Salwar
 color: Indigo Blue
 price: 1400
 offer_price: 950
-in_stock: false
+in_stock: true
 hidden: false
 images:
   - /images/img-20251110-wa0002.jpg
