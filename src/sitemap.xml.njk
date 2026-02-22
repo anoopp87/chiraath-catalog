@@ -2,8 +2,9 @@
 permalink: /sitemap.xml
 layout: null
 eleventyExcludeFromCollections: true
+eleventyComputed:
+  contentType: "application/xml"
 ---
-
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for p in collections.productsSorted %}
@@ -13,7 +14,6 @@ eleventyExcludeFromCollections: true
   </url>
   {% endif %}
 {% endfor %}
-
   <url><loc>{{ site.url }}/</loc></url>
   <url><loc>{{ site.url }}/sarees/</loc></url>
   <url><loc>{{ site.url }}/salwars/</loc></url>
