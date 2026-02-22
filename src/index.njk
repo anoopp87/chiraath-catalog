@@ -1,12 +1,11 @@
 ---
+layout: base.njk
 title: CHIRAATH
-
+description: Curated boutique for Designer Sarees, Silk Sarees, and Premium Salwar Materials. Order on WhatsApp.
 pagination:
   data: collections.productsSorted
   size: 12
   alias: prods
-
 permalink: "{% if pagination.pageNumber == 0 %}index.html{% else %}page/{{ pagination.pageNumber + 1 }}/index.html{% endif %}"
 ---
-
 {% include "catalog.njk" %}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {# Title logic #}
+  {% set pageTitle = title or "CHIRAATH" %}
+  <title>{{ pageTitle }}{% if pagination and pagination.pageNumber and pagination.pageNumber > 0 %} - Page {{ pagination.pageNumber + 1 }}{% endif %}</title>
+
+  {# Description #}
+  {% set desc = description or "Curated boutique for Designer Sarees, Silk Sarees, and Premium Salwar Materials. WhatsApp ordering available." %}
+  <meta name="description" content="{{ desc }}">
+
+  {# Canonical URL (important for pagination + duplicates) #}
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  {# Open Graph (WhatsApp/FB preview) #}
+  <meta property="og:site_name" content="CHIRAATH">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ desc }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ site.url }}{{ site.og_image or '/images/cover.jpg' }}">
+
+  {# Twitter preview #}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle }}">
+  <meta name="twitter:description" content="{{ desc }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.og_image or '/images/cover.jpg' }}">
+
+  {# Optional but nice #}
+  <meta name="robots" content="index,follow">
+</head>
+<body>
+  {{ content | safe }}
+</body>
+</html>
