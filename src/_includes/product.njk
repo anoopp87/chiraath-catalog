@@ -266,13 +266,13 @@
 </a>
     {% endif %}
 
-    <div style="margin-top:18px">
-      {% include "black-footer.njk" %}
-    </div>
+{% if video %}
+  <a class="cta" href="{{ video }}" target="_blank" rel="noopener">Watch Product Video</a>
+{% endif %}
 
-    {% if video %}
-      <a class="cta" href="{{ video }}" target="_blank" rel="noopener">Watch Product Video</a>
-    {% endif %}
+<div style="margin-top:18px">
+  {% include "black-footer.njk" %}
+</div>
   </div>
   
 </div>
