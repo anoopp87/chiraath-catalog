@@ -11,4 +11,5 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-51.jpeg
+video: https://youtube.com/shorts/pQpILb7SpKQ?si=CdbGbLaK8dYTscbK
 ---

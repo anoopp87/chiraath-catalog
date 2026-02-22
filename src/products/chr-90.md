@@ -10,4 +10,5 @@ hidden: false
 images:
   - /images/chr-90.jpeg
   - /images/pxl_20251012_120551930.portrait.jpg
+video: https://youtube.com/shorts/eL3cRR9f1mU?si=UYBxkW2y11ixOi0u
 ---

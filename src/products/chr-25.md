@@ -10,4 +10,5 @@ in_stock: true
 hidden: false
 images:
   - /images/img-20250922-wa0048.jpg
+video: https://youtube.com/shorts/hJesZ6BMucc?si=Tfx4UL9OMv1gT1U2
 ---

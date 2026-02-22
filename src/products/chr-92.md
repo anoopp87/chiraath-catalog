@@ -11,4 +11,5 @@ in_stock: true
 hidden: false
 images:
   - /images/pxl_20251026_121726733.jpg
+video: https://youtube.com/shorts/TzTuYWq1Rms?si=QoQa4Wqe6VvRs738
 ---
