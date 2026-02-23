@@ -858,6 +858,33 @@ function toggleControls(focusEl){
   .price{ margin-top:4px; }
   .price strong{ font-size:13px; }
 }
+/* ===== Mobile: fit 2 full rows (4 products) ===== */
+@media (max-width: 520px){
+
+  /* Make product photos a bit shorter (this is the biggest win) */
+  .card img{
+    aspect-ratio: 1 / 1.15;   /* was 4/5 (taller). Try 1/1.1 if you want even shorter */
+    object-position: 50% 18%;
+  }
+
+  /* Make the card a bit tighter */
+  .card{ padding: 8px; }
+  .price{ margin-top: 3px; }
+  .code{ margin-top: 5px; }
+
+  /* Title: keep it to 2 lines so it doesn’t push height */
+  .title{
+    font-size: 13px;
+    line-height: 1.18;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Slightly smaller price text */
+  .price strong{ font-size: 13px; }
+}
 </style>
 <!-- Netlify Identity -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
