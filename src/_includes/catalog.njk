@@ -819,6 +819,28 @@ function toggleControls(focusEl){
     flex: 1 1 100%;
   }
 }
+/* ===== Mobile compact mode (make it like old view) ===== */
+@media (max-width: 520px){
+  .wrap{ padding:12px; }
+
+  .grid{ gap:12px; }
+
+  .card{
+    padding:8px;
+    border-radius:14px;
+  }
+
+  .card img{ border-radius:12px; }
+
+  .title{ font-size:13px; font-weight:800; }
+  .code{ font-size:11px; }
+  .price strong{ font-size:13px; }
+}
+
+/* 3 columns on larger phones */
+@media (min-width: 480px) and (max-width: 767px){
+  .grid{ grid-template-columns: repeat(3, 1fr); }
+}
 </style>
 <!-- Netlify Identity -->
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
