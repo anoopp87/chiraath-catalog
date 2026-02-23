@@ -819,27 +819,44 @@ function toggleControls(focusEl){
     flex: 1 1 100%;
   }
 }
-/* ===== Mobile compact mode (make it like old view) ===== */
+/* ===== Mobile compact (match old density) ===== */
 @media (max-width: 520px){
-  .wrap{ padding:12px; }
+  body{ font-size: 14px; }
 
-  .grid{ gap:12px; }
+  .wrap{
+    padding:12px;
+    margin:10px auto 14px;
+    border-radius:18px;
+  }
+
+  .cover{
+    margin-bottom:10px;
+    border-radius:14px;
+    aspect-ratio: 16 / 7;
+  }
+
+  .btn{ padding:10px; font-size:14px; }
+  .btn.whatsapp{ padding:10px; }
+
+  .chips{ gap:6px; margin:10px 0 6px; }
+  .chipbtn{ padding:7px 10px; font-size:12px; }
+
+  .iconbtn{ width:36px; height:36px; border-radius:12px; }
+  .grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap:12px;
+  }
 
   .card{
     padding:8px;
     border-radius:14px;
   }
-
   .card img{ border-radius:12px; }
 
-  .title{ font-size:13px; font-weight:800; }
-  .code{ font-size:11px; }
+  .code{ font-size:11px; margin-top:6px; }
+  .title{ font-size:13px; line-height:1.22; }
+  .price{ margin-top:4px; }
   .price strong{ font-size:13px; }
-}
-
-/* 3 columns on larger phones */
-@media (min-width: 480px) and (max-width: 767px){
-  .grid{ grid-template-columns: repeat(3, 1fr); }
 }
 </style>
 <!-- Netlify Identity -->
