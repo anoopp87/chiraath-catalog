@@ -6,7 +6,7 @@ category: Saree
 color: White with peach floral design
 price: 799
 offer_price: 500
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-91.jpeg
