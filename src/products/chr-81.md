@@ -7,7 +7,7 @@ color: Coral Pink with Green Floral Print
 size: XXL
 price: 1545
 offer_price: 950
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-81.jpeg

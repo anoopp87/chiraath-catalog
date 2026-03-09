@@ -10,6 +10,6 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-65.jpeg
-  - /images/whatsapp-image-2025-12-13-at-18.43.28-2-.jpeg
+  - /images/CHR-65(1).jpeg
 video: https://youtube.com/shorts/WSZKxVJLc2Q?si=GvvHX85z8vKA7iUM
 ---

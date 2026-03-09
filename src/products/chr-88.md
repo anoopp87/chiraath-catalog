@@ -9,5 +9,6 @@ offer_price: 1200
 in_stock: true
 hidden: false
 images:
-  - /images/pxl_20251020_073031024~2.jpg
+  - /images/CHR-88.jpg
+  - /images/CHR-88(1).jpg
 ---
