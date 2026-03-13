@@ -4,7 +4,7 @@ code: CHR-58
 title: Soft Cotton Salwar Set
 category: Salwar
 color: Wine Red
-size: M, XXL
+size: M, XL
 price: 1500
 offer_price: 999
 in_stock: true

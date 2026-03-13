@@ -7,7 +7,7 @@ color: Printed Multicolored
 size: XXL
 price: 890
 offer_price: 650
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-80.jpeg

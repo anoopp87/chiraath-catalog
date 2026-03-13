@@ -4,7 +4,7 @@ code: CHR-60
 title: Imported Rayon Salwar Set
 category: Salwar
 color: Violet, Mustard, Grey, Pink
-size: M/XL
+size: M
 price: 1600
 offer_price: 1100
 in_stock: true
