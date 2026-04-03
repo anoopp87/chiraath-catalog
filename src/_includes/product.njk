@@ -3,6 +3,18 @@
 {% set whatsapp_main = "919567883837" %}
 {% set order_email = "chiraath.official@hotmail.com" %}
 
+{# ===== Head tags (favicon + social preview for product pages) ===== #}
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="CHIRAATH">
+<meta property="og:title" content="{{ title }} – CHIRAATH">
+<meta property="og:description" content="{{ category }}{% if color %} · {{ color }}{% endif %} · Available at CHIRAATH">
+<meta property="og:url" content="{{ site.url }}/product/{{ code | slug }}/">
+<meta property="og:image" content="{{ site.url }}{% if images and images.length %}{{ images[0] }}{% elseif image %}{{ image }}{% else %}/images/cover.jpg{% endif %}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url }}{% if images and images.length %}{{ images[0] }}{% elseif image %}{{ image }}{% else %}/images/cover.jpg{% endif %}">
+<title>{{ title }} – CHIRAATH</title>
+
 <style>
   :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
   *{box-sizing:border-box}
