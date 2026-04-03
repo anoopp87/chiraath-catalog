@@ -10,5 +10,5 @@ in_stock: true
 hidden: false
 images:
   - /images/CHR-88.jpg
-  - /images/CHR-88(1).jpg
+  - /images/CHR-88(1).jpeg
 ---

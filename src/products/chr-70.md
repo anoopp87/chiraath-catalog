@@ -9,6 +9,5 @@ offer_price: 900
 in_stock: true
 hidden: false
 images:
-  - /images/chr-70.jpeg
   - /images/pxl_20251005_122754978~2-1-.jpg
 ---
