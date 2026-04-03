@@ -244,17 +244,17 @@
   }
   .card img.img-loaded{opacity:1}
 
-  .oos{
+  .oos,.badge-low,.badge-new{
     position:absolute;
-    top:10px;
-    left:10px;
-    background:#111;
-    color:#fff;
-    font-size:12px;
+    font-size:11px;
     font-weight:900;
     border-radius:999px;
-    padding:6px 10px;
+    padding:5px 10px;
+    line-height:1;
   }
+  .oos{top:10px;left:10px;background:#111;color:#fff}
+  .badge-low{top:10px;left:10px;background:#e8521a;color:#fff}
+  .badge-new{top:10px;right:10px;background:#b8860b;color:#fff;letter-spacing:.03em}
 
   .code{
     display:inline-block;
@@ -353,6 +353,11 @@
         {% endif %}
         {% if p.data.in_stock == false %}
           <div class="oos">Out of stock</div>
+        {% elif p.data.stock_count and p.data.stock_count <= 5 %}
+          <div class="badge-low">Only {{ p.data.stock_count }} left</div>
+        {% endif %}
+        {% if p.data.date | isNew %}
+          <div class="badge-new">New</div>
         {% endif %}
       </div>
 
@@ -387,6 +392,8 @@
       "offer_price": {{ (p.data.offer_price or 0) | dump | safe }},
       "price": {{ (p.data.offer_price or p.data.price or 0) | dump | safe }},
       "image": {{ ((p.data.images and p.data.images[0]) or p.data.image or "") | dump | safe }},
+      "date": {{ (p.data.date or "") | dump | safe }},
+      "stock_count": {{ (p.data.stock_count or 0) | dump | safe }},
       "orig": {{ loop.index0 | dump | safe }}
     }
   {% endif %}
@@ -571,6 +578,13 @@
         ? `<span class="old">₹${basePrice}</span><strong>₹${offerPrice}</strong>`
         : `<strong>₹${basePrice}</strong>`;
 
+      const isNew = p.date && ((Date.now() - new Date(p.date)) / 86400000) <= 14;
+      const stockCount = Number(p.stock_count || 0);
+      const leftBadge = inStock
+        ? (stockCount > 0 && stockCount <= 5 ? `<div class="badge-low">Only ${stockCount} left</div>` : '')
+        : '<div class="oos">Out of stock</div>';
+      const newBadge = isNew ? '<div class="badge-new">New</div>' : '';
+
       const html = `
         <div class="product-item"
              data-stock="${stock}"
@@ -582,7 +596,7 @@
             <div class="card">
               <div class="imgwrap">
                 <img src="${img}" alt="${title}" loading="lazy" decoding="async">
-                ${inStock ? '' : '<div class="oos">Out of stock</div>'}
+                ${leftBadge}${newBadge}
               </div>
               <div class="code">${code}</div>
               <div class="title">${title}</div>

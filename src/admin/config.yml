@@ -65,6 +65,13 @@ collections:
           default: true,
         }
       - {
+          label: "Stock Count (optional — shows 'Only X left' badge when ≤ 5)",
+          name: "stock_count",
+          widget: "number",
+          required: false,
+          value_type: "int",
+        }
+      - {
           label: "Hide Product",
           name: "hidden",
           widget: "boolean",

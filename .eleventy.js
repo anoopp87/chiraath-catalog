@@ -3,6 +3,13 @@ module.exports = function (eleventyConfig) {
     encodeURIComponent(value || ""),
   );
 
+  // Returns true if the date is within the last 14 days (for "New" badge)
+  eleventyConfig.addFilter("isNew", function (date) {
+    if (!date) return false;
+    const diffDays = (Date.now() - new Date(date)) / (1000 * 60 * 60 * 24);
+    return diffDays >= 0 && diffDays <= 14;
+  });
+
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("_headers");
