@@ -84,6 +84,14 @@
     justify-content:space-between;
     gap:10px;
     margin:12px 0 10px;
+    position:sticky;
+    top:8px;
+    z-index:100;
+    background:rgba(255,255,255,0.90);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-radius:14px;
+    padding:4px 6px;
   }
   .chip-actions{display:flex; gap:8px; flex:0 0 auto;}
   .iconbtn{
@@ -649,6 +657,16 @@ function toggleControls(focusEl){
 
   searchBox?.addEventListener('input', () => applyAll(true));
   sortSelect?.addEventListener('change', () => applyAll(true));
+
+  // Smooth scroll to top on pagination click
+  document.querySelectorAll('[data-page-link]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const href = a.getAttribute('href');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => { window.location.href = href; }, 320);
+    });
+  });
 
   // Init from URL
   (function init(){
