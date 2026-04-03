@@ -307,9 +307,9 @@
     <div class="card">
       <div class="imgwrap">
         {% if hero %}
-          <img src="{{ hero }}" alt="{{ p.data.title }}">
+          <img src="{{ hero }}" alt="{{ p.data.title }}" loading="lazy" decoding="async">
         {% else %}
-          <img src="/images/cover.jpg" alt="{{ p.data.title }}">
+          <img src="/images/cover.jpg" alt="{{ p.data.title }}" loading="lazy" decoding="async">
         {% endif %}
         {% if p.data.in_stock == false %}
           <div class="oos">Out of stock</div>
@@ -462,7 +462,12 @@
 
     if (globalInfo) {
       globalInfo.hidden = !isGlobal;
-      if (isGlobal) globalInfo.textContent = `${getItems().length} results for "${q}"`;
+      if (isGlobal) {
+        const count = getItems().length;
+        globalInfo.textContent = count === 0
+          ? `No products found for "${q}"`
+          : `${count} result${count !== 1 ? 's' : ''} for "${q}"`;
+      }
     }
 
     if (sortLabel) sortLabel.textContent = 'Sort results';
@@ -492,6 +497,12 @@
 
     grid.innerHTML = '';
 
+    if (matches.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:40px 16px;text-align:center;color:var(--muted)"><div style="font-size:2rem;margin-bottom:8px">🔍</div><div style="font-weight:800;font-size:15px">No products found</div><div style="font-size:13px;margin-top:4px">Try a different name or product code</div></div>`;
+      setMode(true, q);
+      return;
+    }
+
     matches.forEach(p => {
       const inStock = (p.in_stock !== false);
       const stock = inStock ? 1 : 0;
@@ -519,7 +530,7 @@
           <a class="cardlink" href="${p.url}">
             <div class="card">
               <div class="imgwrap">
-                <img src="${img}" alt="${title}">
+                <img src="${img}" alt="${title}" loading="lazy" decoding="async">
                 ${inStock ? '' : '<div class="oos">Out of stock</div>'}
               </div>
               <div class="code">${code}</div>

@@ -198,6 +198,30 @@
 }
 </style>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": {{ title | dump | safe }},
+  "sku": {{ (code or "") | dump | safe }},
+  "description": "{{ category }}{% if color %} — {{ color }}{% endif %}",
+  "brand": { "@type": "Brand", "name": "CHIRAATH" },
+  {% if images and images.length %}
+  "image": [{% for img in images %}{{ (site.url ~ img) | dump | safe }}{% if not loop.last %},{% endif %}{% endfor %}],
+  {% elseif image %}
+  "image": [{{ (site.url ~ image) | dump | safe }}],
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "INR",
+    "price": "{{ offer_price or price }}",
+    "availability": "{% if in_stock == false %}https://schema.org/OutOfStock{% else %}https://schema.org/InStock{% endif %}",
+    "url": "{{ site.url }}/product/{{ code | slug }}/",
+    "seller": { "@type": "Organization", "name": "CHIRAATH" }
+  }
+}
+</script>
+
 <div class="wrap">
   <div class="topbar">
     <div class="left">
@@ -211,14 +235,14 @@
     {% if images and images.length %}
       <div class="gallery">
         <a id="mainLink" href="{{ images[0] }}" target="_blank" rel="noopener">
-          <img id="mainImg" class="img" src="{{ images[0] }}" alt="{{ title }}">
+          <img id="mainImg" class="img" src="{{ images[0] }}" alt="{{ title }}" decoding="async">
         </a>
 
         {% if images.length > 1 %}
           <div class="thumbs">
             {% for im in images %}
               <button class="thumb" type="button" data-src="{{ im }}" aria-label="View image {{ loop.index }}">
-                <img src="{{ im }}" alt="">
+                <img src="{{ im }}" alt="" loading="lazy" decoding="async">
               </button>
             {% endfor %}
           </div>
