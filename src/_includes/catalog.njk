@@ -221,7 +221,10 @@
     object-position:50% 18%;
     border-radius:12px;
     background:#f3f3f3;
+    opacity:0;
+    transition:opacity 0.35s ease;
   }
+  .card img.img-loaded{opacity:1}
 
   .oos{
     position:absolute;
@@ -279,9 +282,9 @@
 <div id="controlsPanel" class="controls-panel" hidden>
   <div class="controls">
 <div class="control">
-  <div class="label">Search by name or code</div>
+  <div class="label">Search</div>
   <div class="searchrow">
-    <input id="searchBox" type="search" placeholder="Search by code or product name..." autocomplete="off">
+    <input id="searchBox" type="search" placeholder="Name, code, or color…" autocomplete="off">
     <button class="mini-clear" id="clearSearch" type="button">Clear</button>
   </div>
 </div>
@@ -428,6 +431,16 @@
     return grid ? Array.from(grid.querySelectorAll('.product-item')) : [];
   }
 
+  function applyFadeIn(root) {
+    (root || document).querySelectorAll('.card img').forEach(img => {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      } else {
+        img.addEventListener('load', () => img.classList.add('img-loaded'), { once: true });
+      }
+    });
+  }
+
   function applySort(){
     if (!grid || !sortSelect) return;
 
@@ -455,6 +468,7 @@
     });
 
     sorted.forEach(el => grid.appendChild(el));
+    applyFadeIn(grid);
   }
 
   function setMode(isGlobal, q){

@@ -196,6 +196,12 @@
   fill:#fff;
   flex:0 0 auto;
 }
+
+/* Fade-in on load */
+.img{opacity:0;transition:opacity 0.4s ease}
+.img.img-loaded{opacity:1}
+.thumb img{opacity:0;transition:opacity 0.3s ease}
+.thumb img.img-loaded{opacity:1}
 </style>
 
 <script type="application/ld+json">
@@ -321,6 +327,8 @@
 
   function swapImg(src, el){
     if (!mainImg) return;
+    mainImg.classList.remove('img-loaded');
+    mainImg.onload = () => mainImg.classList.add('img-loaded');
     mainImg.src = src;
     if (mainLink) mainLink.href = src;
 
@@ -331,6 +339,15 @@
   thumbs.forEach((t, i) => {
     t.addEventListener('click', () => swapImg(t.dataset.src, t));
     if (i === 0) t.classList.add('active');
+  });
+
+  // Init fade-in for all images on page load
+  document.querySelectorAll('img').forEach(img => {
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add('img-loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('img-loaded'), { once: true });
+    }
   });
 
 </script>
