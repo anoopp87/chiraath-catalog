@@ -10,6 +10,16 @@ module.exports = function (eleventyConfig) {
     return diffDays >= 0 && diffDays <= 14;
   });
 
+  // Products added in the last 7 days (for "New this week" section)
+  eleventyConfig.addCollection("productsNewThisWeek", function (collectionApi) {
+    const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+    return collectionApi
+      .getFilteredByGlob("src/products/*.md")
+      .filter((p) => !p.data.hidden && p.data.in_stock !== false)
+      .filter((p) => new Date(p.data.date || 0).getTime() >= sevenDaysAgo)
+      .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+  });
+
   eleventyConfig.addPassthroughCopy("src/images");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("_headers");
