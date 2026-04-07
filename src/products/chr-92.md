@@ -12,4 +12,9 @@ hidden: false
 images:
   - /images/CHR-92.jpg
 video: https://youtube.com/shorts/TzTuYWq1Rms?si=QoQa4Wqe6VvRs738
+tags:
+  - Silk
+  - Festive
+  - Casual
+  - Under ₹1000
 ---

@@ -10,4 +10,8 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-46.jpeg
+tags:
+  - Silk
+  - Wedding
+  - Festive
 ---

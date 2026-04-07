@@ -10,4 +10,8 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-61.jpeg
+tags:
+  - Cotton
+  - Casual
+  - Under ₹1000
 ---

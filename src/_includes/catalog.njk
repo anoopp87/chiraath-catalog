@@ -436,6 +436,7 @@
     <a class="chipbtn {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" href="/">All</a>
     <a class="chipbtn {% if page.url.startsWith('/sarees') %}active{% endif %}" href="/sarees/">Sarees</a>
     <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
+    <button class="chipbtn fchip" data-filter="Under ₹1000" type="button">Under ₹1000</button>
   </div>
 
   <div class="chip-actions">
@@ -530,12 +531,14 @@
       "image": {{ ((p.data.images and p.data.images[0]) or p.data.image or "") | dump | safe }},
       "date": {{ (p.data.date or "") | dump | safe }},
       "stock_count": {{ (p.data.stock_count or 0) | dump | safe }},
-      "orig": {{ loop.index0 | dump | safe }}
+      "orig": {{ loop.index0 | dump | safe }},
+      "tags": {{ (p.data.tags or []) | dump | safe }}
     }
   {% endif %}
 {% endfor %}
 ]
 </script>
+
 
 <div id="globalInfo" class="global-info" hidden></div>
 
@@ -549,7 +552,8 @@
            data-search="{{ (p.data.code ~ ' ' ~ p.data.title) | lower }}"
            data-title="{{ (p.data.title or '') | lower }}"
            data-price="{{ displayPrice }}"
-           data-orig="{{ loop.index0 }}">
+           data-orig="{{ loop.index0 }}"
+           data-tags="{{ p.data.tags | join(',') if p.data.tags else '' }}">
         <a class="cardlink" href="{{ p.url }}">{{ card(p) }}</a>
       </div>
     {% endif %}
@@ -613,6 +617,75 @@
   } catch (e) {
     ALL = [];
   }
+
+  // ===== Tag filter chip (Under ₹1000) =====
+  let activeFilter = 'all';
+  const filterBtns = document.querySelectorAll('.fchip[data-filter]');
+
+  function renderTagFilter(tag){
+    if (!grid) return;
+    const matches = ALL.filter(p => Array.isArray(p.tags) && p.tags.includes(tag));
+
+    grid.innerHTML = '';
+
+    if (matches.length === 0) {
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:40px 16px;text-align:center;color:var(--muted)"><div style="font-size:2rem;margin-bottom:8px">🔍</div><div style="font-weight:800;font-size:15px">No products found</div></div>`;
+      setMode(true, tag);
+      return;
+    }
+
+    matches.forEach(p => {
+      const inStock = (p.in_stock !== false);
+      const stock = inStock ? 1 : 0;
+      const basePrice = Number(p.base_price || 0);
+      const offerPrice = Number(p.offer_price || 0);
+      const displayPrice = offerPrice > 0 ? offerPrice : basePrice;
+      const title = String(p.title || '');
+      const code = String(p.code || '');
+      const img = p.image || '/images/cover.jpg';
+      const orig = Number(p.orig || 0);
+      const priceHtml = offerPrice > 0
+        ? `<span class="old">₹${basePrice}</span><strong>₹${offerPrice}</strong>`
+        : `<strong>₹${basePrice}</strong>`;
+      const isNew = p.date && ((Date.now() - new Date(p.date)) / 86400000) <= 14;
+      const stockCount = Number(p.stock_count || 0);
+      const leftBadge = inStock
+        ? (stockCount > 0 && stockCount <= 5 ? `<div class="badge-low">Only ${stockCount} left</div>` : '')
+        : '<div class="oos">Out of stock</div>';
+      const newBadge = isNew ? '<div class="badge-new">New</div>' : '';
+
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="product-item" data-stock="${stock}" data-title="${title.toLowerCase()}" data-search="${(code+' '+title).toLowerCase()}" data-price="${displayPrice}" data-orig="${orig}">
+          <a class="cardlink" href="${p.url}">
+            <div class="card">
+              <div class="imgwrap"><img src="${img}" alt="${title}" loading="lazy" decoding="async">${leftBadge}${newBadge}</div>
+              <div class="code">${code}</div>
+              <div class="title">${title}</div>
+              <div class="price">${priceHtml}</div>
+            </div>
+          </a>
+        </div>`);
+    });
+
+    setMode(true, tag);
+    applySort();
+    applyFadeIn(grid);
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isActive = btn.classList.contains('active');
+      filterBtns.forEach(b => b.classList.remove('active'));
+      if (isActive) {
+        activeFilter = 'all';
+        restorePage();
+      } else {
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        renderTagFilter(activeFilter);
+      }
+    });
+  });
 
   function getItems(){
     return grid ? Array.from(grid.querySelectorAll('.product-item')) : [];

@@ -11,4 +11,8 @@ in_stock: true
 hidden: false
 images:
   - /images/img-20251002-wa0029.jpg
+tags:
+  - Cotton
+  - Linen
+  - Casual
 ---

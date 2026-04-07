@@ -10,4 +10,10 @@ in_stock: false
 hidden: false
 images:
   - /images/img-20250922-wa0045.jpg
+tags:
+  - Silk
+  - Cotton
+  - Wedding
+  - Festive
+  - Casual
 ---

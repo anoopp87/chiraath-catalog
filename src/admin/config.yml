@@ -77,6 +77,14 @@ collections:
           widget: "boolean",
           default: false,
         }
+      - {
+          label: "Tags (occasion / fabric)",
+          name: "tags",
+          widget: "select",
+          multiple: true,
+          required: false,
+          options: ["Wedding", "Festive", "Casual", "Silk", "Cotton", "Linen", "Under ₹1000"],
+        }
 
       - label: "Images"
         name: "images"

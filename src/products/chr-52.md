@@ -12,4 +12,8 @@ hidden: false
 images:
   - /images/img-20250921-wa0031.jpg
 video: https://youtube.com/shorts/mzym1wcgbKg?si=j3uUXO1k2TvptSEi
+tags:
+  - Silk
+  - Wedding
+  - Festive
 ---

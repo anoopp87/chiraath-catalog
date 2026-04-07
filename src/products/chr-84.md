@@ -12,4 +12,7 @@ hidden: false
 images:
   - /images/img-20251110-wa0002.jpg
 video: https://youtube.com/shorts/3SBYwwI6M8U?si=PKvDYPygBjRIko44
+tags:
+  - Cotton
+  - Casual
 ---

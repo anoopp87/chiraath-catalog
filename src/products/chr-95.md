@@ -11,4 +11,7 @@ hidden: false
 images:
   - /images/chr-95.jpeg
 video: https://youtube.com/shorts/3-UW5ExSxi8?si=fvP6Tfh_m80yIFv9
+tags:
+  - Silk
+  - Festive
 ---

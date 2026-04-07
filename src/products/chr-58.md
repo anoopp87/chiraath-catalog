@@ -11,4 +11,7 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-58.jpeg
+tags:
+  - Cotton
+  - Casual
 ---

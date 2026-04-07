@@ -10,4 +10,7 @@ in_stock: true
 hidden: false
 images:
   - /images/pxl_20251005_122754978~2-1-.jpg
+tags:
+  - Silk
+  - Festive
 ---

@@ -11,4 +11,7 @@ in_stock: false
 hidden: false
 images:
   - /images/chr-80.jpeg
+tags:
+  - Casual
+  - Under ₹1000
 ---

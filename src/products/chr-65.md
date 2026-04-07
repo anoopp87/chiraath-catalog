@@ -12,4 +12,8 @@ images:
   - /images/chr-65.jpeg
   - /images/CHR-65(1).jpeg
 video: https://youtube.com/shorts/WSZKxVJLc2Q?si=GvvHX85z8vKA7iUM
+tags:
+  - Cotton
+  - Casual
+  - Under ₹1000
 ---

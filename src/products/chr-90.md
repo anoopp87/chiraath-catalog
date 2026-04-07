@@ -10,4 +10,8 @@ hidden: false
 images:
   - /images/chr-90.jpeg
 video: https://youtube.com/shorts/eL3cRR9f1mU?si=UYBxkW2y11ixOi0u
+tags:
+  - Cotton
+  - Casual
+  - Under ₹1000
 ---

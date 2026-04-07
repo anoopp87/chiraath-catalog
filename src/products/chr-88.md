@@ -11,4 +11,10 @@ hidden: false
 images:
   - /images/CHR-88.jpg
   - /images/CHR-88(1).jpeg
+tags:
+  - Silk
+  - Cotton
+  - Wedding
+  - Festive
+  - Casual
 ---

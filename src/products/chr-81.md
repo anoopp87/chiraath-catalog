@@ -11,4 +11,7 @@ in_stock: false
 hidden: false
 images:
   - /images/chr-81.jpeg
+tags:
+  - Cotton
+  - Casual
 ---

@@ -11,4 +11,8 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-79.jpg
+tags:
+  - Silk
+  - Festive
+  - Casual
 ---

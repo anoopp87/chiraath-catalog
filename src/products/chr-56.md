@@ -11,4 +11,8 @@ hidden: false
 images:
   - /images/chr-56.jpeg
 video: https://youtube.com/shorts/qy-re75G4Ec?si=AxcjIAzSiv6scO2Z
+tags:
+  - Silk
+  - Festive
+  - Casual
 ---

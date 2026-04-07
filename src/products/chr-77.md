@@ -11,4 +11,7 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-77.jpeg
+tags:
+  - Silk
+  - Festive
 ---
