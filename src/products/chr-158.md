@@ -13,4 +13,5 @@ images:
 tags:
   - Cotton
   - Casual
+pairs_with:
 ---

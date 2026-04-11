@@ -214,6 +214,17 @@
 .img.img-loaded{opacity:1}
 .thumb img{opacity:0;transition:opacity 0.3s ease}
 .thumb img.img-loaded{opacity:1}
+/* Complete the look */
+.ctl-wrap{margin:20px 0 4px}
+.ctl-head{font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.ctl-scroll{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+.ctl-scroll::-webkit-scrollbar{display:none}
+.ctl-card{flex:0 0 120px;text-decoration:none;color:inherit;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff}
+.ctl-card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.ctl-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.1)}
+.ctl-code{font-size:10px;font-weight:700;color:var(--muted);padding:6px 8px 2px}
+.ctl-title{font-size:11px;font-weight:700;padding:0 8px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ctl-price{font-size:12px;font-weight:900;padding:4px 8px 8px}
 </style>
 
 <script type="application/ld+json">
@@ -315,6 +326,26 @@
 
 {% if video %}
   <a class="cta" href="{{ video }}" target="_blank" rel="noopener">Watch Product Video</a>
+{% endif %}
+
+{% if pairs_with %}
+<div class="ctl-wrap">
+  <div class="ctl-head">Complete the look</div>
+  <div class="ctl-scroll">
+    {% for p in collections.productsSorted %}
+      {% if not p.data.hidden and p.data.code and p.data.code in pairs_with %}
+        {% set pimg = (p.data.images and p.data.images[0]) or p.data.image or '/images/cover.jpg' %}
+        {% set pdp = p.data.offer_price or p.data.price or 0 %}
+        <a class="ctl-card" href="{{ p.url }}">
+          <img src="{{ pimg }}" alt="{{ p.data.title }}" loading="lazy">
+          <div class="ctl-code">{{ p.data.code }}</div>
+          <div class="ctl-title">{{ p.data.title }}</div>
+          <div class="ctl-price">₹{{ pdp }}</div>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
 {% endif %}
 
 <div style="margin-top:18px">

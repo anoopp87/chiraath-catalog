@@ -85,6 +85,13 @@ collections:
           required: false,
           options: ["Wedding", "Festive", "Casual", "Silk", "Cotton", "Linen", "Under ₹1000"],
         }
+      - {
+          label: "Complete the look — pairs with (product codes, comma separated)",
+          name: "pairs_with",
+          widget: "string",
+          required: false,
+          hint: "Enter product codes separated by commas, e.g. CHR-117, CHR-122",
+        }
 
       - label: "Images"
         name: "images"

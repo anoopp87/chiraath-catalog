@@ -92,6 +92,10 @@
     cursor:pointer;
   }
   .chipbtn.active{background:#111;color:#fff;border-color:#111}
+  /* ===== Color swatches ===== */
+  .swatches{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;min-height:16px}
+  .swatch{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.15);flex-shrink:0;display:inline-block}
+  .swatch-more{font-size:10px;color:var(--muted);align-self:center;font-weight:700;margin-left:1px}
 
   /* ===== Tabs + icons (same row) ===== */
   .chipbar{
@@ -464,7 +468,7 @@
 {% else %}
   {% set hero = p.data.image %}
 {% endif %}
-    <div class="card">
+    <div class="card" data-color="{{ p.data.color }}">
       <div class="imgwrap">
         {% if hero %}
           <img src="{{ hero }}" alt="{{ p.data.title }}" loading="lazy" decoding="async">
@@ -491,6 +495,7 @@
           <strong>₹{{ p.data.price }}</strong>
         {% endif %}
       </div>
+      <div class="swatches"></div>
     </div>
   {% endmacro %}
 
@@ -515,7 +520,8 @@
       "date": {{ (p.data.date or "") | dump | safe }},
       "stock_count": {{ (p.data.stock_count or 0) | dump | safe }},
       "orig": {{ loop.index0 | dump | safe }},
-      "tags": {{ (p.data.tags or []) | dump | safe }}
+      "tags": {{ (p.data.tags or []) | dump | safe }},
+      "color": {{ (p.data.color or "") | dump | safe }}
     }
   {% endif %}
 {% endfor %}
@@ -637,20 +643,23 @@
         : '<div class="oos">Out of stock</div>';
       const newBadge = isNew ? '<div class="badge-new">New</div>' : '';
 
+      const color = String(p.color || '');
       grid.insertAdjacentHTML('beforeend', `
         <div class="product-item" data-stock="${stock}" data-title="${title.toLowerCase()}" data-search="${(code+' '+title).toLowerCase()}" data-price="${displayPrice}" data-orig="${orig}">
           <a class="cardlink" href="${p.url}">
-            <div class="card">
+            <div class="card" data-color="${color}">
               <div class="imgwrap"><img src="${img}" alt="${title}" loading="lazy" decoding="async">${leftBadge}${newBadge}</div>
               <div class="code">${code}</div>
               <div class="title">${title}</div>
               <div class="price">${priceHtml}</div>
+              <div class="swatches"></div>
             </div>
           </a>
         </div>`);
     });
 
     setMode(true, tag);
+    renderSwatches(grid);
     applySort();
     applyFadeIn(grid);
   }
@@ -672,6 +681,54 @@
 
   function getItems(){
     return grid ? Array.from(grid.querySelectorAll('.product-item')) : [];
+  }
+
+  // ===== Color swatches =====
+  const COLOR_MAP = {
+    'black':'#1a1a1a','white':'#f5f0e8','red':'#c0392b','maroon':'#800000',
+    'pink':'#e879a0','rose':'#e8638a','coral':'#e8856a','peach':'#ffcba4',
+    'orange':'#e8722a','rust':'#b7410e','yellow':'#f1c40f','mustard':'#e3a832','golden':'#d4af37','gold':'#d4af37',
+    'green':'#4a8c4f','olive':'#6b7a44','emerald':'#2ecc71','mint':'#98d8c8','teal':'#008080','turquoise':'#40e0d0','aqua':'#00bcd4',
+    'blue':'#4a7fc1','indigo':'#3949ab','navy':'#1a2a6c',
+    'purple':'#7d3c98','violet':'#7d3c98','lavender':'#967bb6',
+    'brown':'#7b4b2a','beige':'#f5f0e8','cream':'#fdf7e3','ivory':'#f5f0e8',
+    'grey':'#9e9e9e','gray':'#9e9e9e','silver':'#c0c0c0',
+  };
+
+  function parseSwatches(colorStr){
+    if (!colorStr) return [];
+    const lower = colorStr.toLowerCase();
+    const found = [];
+    for (const [name, hex] of Object.entries(COLOR_MAP)){
+      if (lower.includes(name) && !found.find(f => f.hex === hex)){
+        found.push({name, hex});
+      }
+    }
+    return found;
+  }
+
+  function renderSwatches(root){
+    (root || document).querySelectorAll('.card[data-color]').forEach(card => {
+      const el = card.querySelector('.swatches');
+      if (!el || el.children.length > 0) return;
+      const colors = parseSwatches(card.dataset.color);
+      if (!colors.length) return;
+      const shown = colors.slice(0, 5);
+      const extra = colors.length - shown.length;
+      shown.forEach(c => {
+        const s = document.createElement('span');
+        s.className = 'swatch';
+        s.style.background = c.hex;
+        s.title = c.name;
+        el.appendChild(s);
+      });
+      if (extra > 0){
+        const m = document.createElement('span');
+        m.className = 'swatch-more';
+        m.textContent = `+${extra}`;
+        el.appendChild(m);
+      }
+    });
   }
 
   function applyFadeIn(root) {
@@ -784,6 +841,7 @@
         : '<div class="oos">Out of stock</div>';
       const newBadge = isNew ? '<div class="badge-new">New</div>' : '';
 
+      const color = String(p.color || '');
       const html = `
         <div class="product-item"
              data-stock="${stock}"
@@ -792,7 +850,7 @@
              data-price="${displayPrice}"
              data-orig="${orig}">
           <a class="cardlink" href="${p.url}">
-            <div class="card">
+            <div class="card" data-color="${color}">
               <div class="imgwrap">
                 <img src="${img}" alt="${title}" loading="lazy" decoding="async">
                 ${leftBadge}${newBadge}
@@ -800,6 +858,7 @@
               <div class="code">${code}</div>
               <div class="title">${title}</div>
               <div class="price">${priceHtml}</div>
+              <div class="swatches"></div>
             </div>
           </a>
         </div>
@@ -809,6 +868,7 @@
 
     setMode(true, q);
     applySort();
+    renderSwatches(grid);
   }
 
   function getStateFromUrl(){
@@ -898,6 +958,7 @@ function toggleControls(focusEl){
     if (controlsPanel && st.q) controlsPanel.hidden = false;
 
     applyAll(false);
+    renderSwatches();
   })();
 </script>
 

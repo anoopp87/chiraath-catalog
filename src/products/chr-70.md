@@ -13,4 +13,5 @@ images:
 tags:
   - Silk
   - Festive
+pairs_with:
 ---

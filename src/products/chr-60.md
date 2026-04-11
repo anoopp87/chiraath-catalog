@@ -15,4 +15,5 @@ images:
 video: https://youtube.com/shorts/1YCacxlF3_I?si=I2jKh1mKOo3LFvNj
 tags:
   - Casual
+pairs_with:
 ---

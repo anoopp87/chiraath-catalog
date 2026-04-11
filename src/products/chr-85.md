@@ -14,4 +14,5 @@ images:
 tags:
   - Linen
   - Casual
+pairs_with:
 ---
