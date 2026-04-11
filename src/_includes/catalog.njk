@@ -375,24 +375,6 @@
     <span>⚡ 48hr dispatch</span>
   </div>
 
-  {% if pagination.pageNumber == 0 and page.url != '/sarees/' and page.url != '/salwars/' %}
-  <div class="howtobuy">
-    <div class="howtobuy-step">
-      <span class="hb-num">1</span>
-      <span class="hb-text"><strong>Browse</strong>Pick your favourite</span>
-    </div>
-    <span class="hb-arrow">→</span>
-    <div class="howtobuy-step">
-      <span class="hb-num">2</span>
-      <span class="hb-text"><strong>WhatsApp</strong>Send the product code</span>
-    </div>
-    <span class="hb-arrow">→</span>
-    <div class="howtobuy-step">
-      <span class="hb-num">3</span>
-      <span class="hb-text"><strong>Receive</strong>Dispatched in 48 hrs</span>
-    </div>
-  </div>
-  {% endif %}
 
 {% if page.url != '/' %}
   <a class="btn whatsapp" href="https://wa.me/{{ whatsapp_main }}" target="_blank" rel="noopener">
