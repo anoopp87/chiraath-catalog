@@ -10,7 +10,6 @@ in_stock: true
 hidden: false
 images:
   - /images/chr-67.jpeg
-  - /images/pxl_20251005_131928551.jpg
 tags:
   - Cotton
   - Casual

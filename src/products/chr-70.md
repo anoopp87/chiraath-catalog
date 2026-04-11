@@ -6,7 +6,7 @@ category: Saree
 color: Emerald Green, Teal Blue
 price: 1400
 offer_price: 900
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/pxl_20251005_122754978~2-1-.jpg
