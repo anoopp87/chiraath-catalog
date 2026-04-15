@@ -92,6 +92,9 @@
     cursor:pointer;
   }
   .chipbtn.active{background:#111;color:#fff;border-color:#111}
+  .fchip--new em{font-style:italic;font-family:Georgia,serif;font-weight:700;letter-spacing:.3px}
+  .fchip--new{border-color:#c9a96e;color:#7a4f1e}
+  .fchip--new.active{background:#7a4f1e;border-color:#7a4f1e;color:#fff}
   /* ===== Color swatches ===== */
   .swatches{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap;min-height:16px}
   .swatch{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(0,0,0,0.15);flex-shrink:0;display:inline-block}
@@ -423,6 +426,7 @@
     <a class="chipbtn {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" href="/">All</a>
     <a class="chipbtn {% if page.url.startsWith('/sarees') %}active{% endif %}" href="/sarees/">Sarees</a>
     <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
+    <button class="chipbtn fchip fchip--new" data-filter="New" type="button"><em>New!</em> Collections</button>
     <button class="chipbtn fchip" data-filter="Under ₹1000" type="button">Under ₹1000</button>
   </div>
 
