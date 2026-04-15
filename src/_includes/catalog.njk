@@ -426,7 +426,13 @@
     <a class="chipbtn {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}" href="/">All</a>
     <a class="chipbtn {% if page.url.startsWith('/sarees') %}active{% endif %}" href="/sarees/">Sarees</a>
     <a class="chipbtn {% if page.url.startsWith('/salwars') %}active{% endif %}" href="/salwars/">Salwars</a>
+    {% set hasNewProducts = false %}
+    {% for p in collections.productsSorted %}
+      {% if p.data.tags and ('New' in p.data.tags) %}{% set hasNewProducts = true %}{% endif %}
+    {% endfor %}
+    {% if hasNewProducts %}
     <button class="chipbtn fchip fchip--new" data-filter="New" type="button"><em>New!</em> Collections</button>
+    {% endif %}
     <button class="chipbtn fchip" data-filter="Under ₹1000" type="button">Under ₹1000</button>
   </div>
 
