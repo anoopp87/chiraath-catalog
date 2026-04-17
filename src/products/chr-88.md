@@ -6,7 +6,7 @@ category: Saree
 color: Green
 price: 1900
 offer_price: 1200
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/CHR-88.jpg
