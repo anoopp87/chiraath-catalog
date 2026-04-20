@@ -122,6 +122,42 @@
     box-shadow:0 0 0 2px rgba(0,0,0,0.08);
   }
 
+  /* ===== Lightbox ===== */
+  #lightbox{
+    display:none;position:fixed;inset:0;z-index:999;
+    background:rgba(0,0,0,0.92);
+    align-items:center;justify-content:center;
+    touch-action:none;
+  }
+  #lightbox.open{display:flex}
+  #lightbox img{
+    max-width:96vw;max-height:92vh;
+    object-fit:contain;border-radius:10px;
+    user-select:none;-webkit-user-drag:none;
+  }
+  #lbClose{
+    position:absolute;top:14px;right:16px;
+    background:rgba(255,255,255,0.15);border:none;
+    color:#fff;font-size:26px;line-height:1;
+    border-radius:50%;width:40px;height:40px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+  }
+  #lbPrev,#lbNext{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:rgba(255,255,255,0.15);border:none;
+    color:#fff;font-size:22px;border-radius:50%;
+    width:44px;height:44px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  #lbPrev{left:12px}#lbNext{right:12px}
+  #lbPrev:hover,#lbNext:hover,#lbClose:hover{background:rgba(255,255,255,0.28)}
+  #lbDots{
+    position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+    display:flex;gap:6px;
+  }
+  .lb-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);border:none;padding:0;cursor:pointer}
+  .lb-dot.active{background:#fff}
+
   /* ===== Premium Polish (Product) ===== */
 :root{
   --radius-xl: 22px;
@@ -263,9 +299,12 @@
 
     {% if images and images.length %}
       <div class="gallery">
-        <a id="mainLink" href="{{ images[0] }}" target="_blank" rel="noopener">
+        <div id="mainWrap" style="position:relative;cursor:zoom-in">
           <img id="mainImg" class="img" src="{{ images[0] }}" alt="{{ title }}" decoding="async">
-        </a>
+          <div style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,0.35);border-radius:8px;padding:4px 7px;pointer-events:none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+          </div>
+        </div>
 
         {% if images.length > 1 %}
           <div class="thumbs">
@@ -355,6 +394,15 @@
   
 </div>
 
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lbClose" aria-label="Close">✕</button>
+  <button id="lbPrev" aria-label="Previous">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <button id="lbNext" aria-label="Next">&#8250;</button>
+  <div id="lbDots"></div>
+</div>
+
 <script>
   const shareBtn = document.getElementById('shareBtn');
   shareBtn?.addEventListener('click', async () => {
@@ -371,24 +419,89 @@
   });
 
   const mainImg = document.getElementById('mainImg');
-  const mainLink = document.getElementById('mainLink');
+  const mainWrap = document.getElementById('mainWrap');
   const thumbs = document.querySelectorAll('.thumb');
+
+  // Collect all image srcs from thumbs (or just mainImg if no thumbs)
+  const allSrcs = thumbs.length
+    ? Array.from(thumbs).map(t => t.dataset.src)
+    : (mainImg ? [mainImg.src] : []);
+  let currentIndex = 0;
 
   function swapImg(src, el){
     if (!mainImg) return;
     mainImg.classList.remove('img-loaded');
     mainImg.onload = () => mainImg.classList.add('img-loaded');
     mainImg.src = src;
-    if (mainLink) mainLink.href = src;
-
     thumbs.forEach(t => t.classList.remove('active'));
     if (el) el.classList.add('active');
+    currentIndex = allSrcs.indexOf(src);
   }
 
   thumbs.forEach((t, i) => {
     t.addEventListener('click', () => swapImg(t.dataset.src, t));
     if (i === 0) t.classList.add('active');
   });
+
+  // ===== Lightbox =====
+  const lb       = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  const lbClose  = document.getElementById('lbClose');
+  const lbPrev   = document.getElementById('lbPrev');
+  const lbNext   = document.getElementById('lbNext');
+  const lbDots   = document.getElementById('lbDots');
+
+  // Build dots
+  if (allSrcs.length > 1 && lbDots) {
+    allSrcs.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'lb-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => lbShow(i));
+      lbDots.appendChild(d);
+    });
+  }
+
+  function lbShow(idx){
+    if (!lb || !allSrcs.length) return;
+    currentIndex = (idx + allSrcs.length) % allSrcs.length;
+    lbImg.src = allSrcs[currentIndex];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // update dots
+    lbDots?.querySelectorAll('.lb-dot').forEach((d,i) => d.classList.toggle('active', i === currentIndex));
+    // show/hide prev-next
+    if (lbPrev) lbPrev.style.display = allSrcs.length > 1 ? '' : 'none';
+    if (lbNext) lbNext.style.display = allSrcs.length > 1 ? '' : 'none';
+  }
+
+  function lbClose_(){
+    lb?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  mainWrap?.addEventListener('click', () => lbShow(currentIndex));
+  lbClose?.addEventListener('click', lbClose_);
+  lbPrev?.addEventListener('click', () => lbShow(currentIndex - 1));
+  lbNext?.addEventListener('click', () => lbShow(currentIndex + 1));
+
+  // Close on backdrop click
+  lb?.addEventListener('click', e => { if (e.target === lb) lbClose_(); });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (!lb?.classList.contains('open')) return;
+    if (e.key === 'Escape') lbClose_();
+    if (e.key === 'ArrowLeft') lbShow(currentIndex - 1);
+    if (e.key === 'ArrowRight') lbShow(currentIndex + 1);
+  });
+
+  // Swipe support (mobile)
+  let touchStartX = 0;
+  lb?.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  lb?.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) dx < 0 ? lbShow(currentIndex + 1) : lbShow(currentIndex - 1);
+  }, {passive:true});
 
   // Init fade-in for all images on page load
   document.querySelectorAll('img').forEach(img => {
