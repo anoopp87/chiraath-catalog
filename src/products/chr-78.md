@@ -7,7 +7,7 @@ color: Wine Red
 size: M
 price: 1400
 offer_price: 950
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/img-20251002-wa0029.jpg
