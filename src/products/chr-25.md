@@ -1,6 +1,6 @@
 ---
 date: 2026-02-01
-code: CHR-25
+code: CHR-64
 title: Kota Linen Saree
 category: Saree
 color: Rani Pink
