@@ -6,7 +6,7 @@ category: Salwar
 size: M, L, XL, XXL
 price: 1700
 offer_price: 900
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-68.jpeg
