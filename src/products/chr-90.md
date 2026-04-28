@@ -5,7 +5,7 @@ title: Mul Cotton Rainbow Saree
 category: Saree
 price: 689
 offer_price: 500
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-90.jpeg
