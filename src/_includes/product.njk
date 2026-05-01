@@ -15,8 +15,15 @@
 <meta name="twitter:image" content="{{ site.url }}{% if images and images.length %}{{ images[0] }}{% elseif image %}{{ image }}{% else %}/images/cover.jpg{% endif %}">
 <title>{{ title }} – CHIRAATH</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
 <style>
-  :root{--text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7}
+  :root{
+    --text:#111;--muted:rgba(0,0,0,.65);--border:#eee;--border2:#ddd;--chip:#f7f7f7;
+    --serif:'Cormorant Garamond',Georgia,serif;
+  }
   *{box-sizing:border-box}
 
   body{
@@ -67,7 +74,7 @@
 }
 
   .code{font-size:12px;color:var(--muted);margin-top:10px}
-  h1{margin:6px 0 4px;font-size:20px}
+  h1{margin:6px 0 4px;font-size:26px;font-weight:600;font-family:var(--serif);line-height:1.2;letter-spacing:.01em}
   .price{margin-top:10px}
   .old{text-decoration:line-through;color:var(--muted);margin-right:8px}
 
@@ -252,7 +259,7 @@
 .thumb img.img-loaded{opacity:1}
 /* Complete the look */
 .ctl-wrap{margin:20px 0 4px}
-.ctl-head{font-size:13px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.ctl-head{font-size:16px;font-weight:600;font-family:var(--serif);letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .ctl-scroll{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
 .ctl-scroll::-webkit-scrollbar{display:none}
 .ctl-card{flex:0 0 120px;text-decoration:none;color:inherit;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff}
