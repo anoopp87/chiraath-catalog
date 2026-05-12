@@ -4,7 +4,7 @@ code: CHR-92
 title: Jute Silk Kurti
 category: Salwar
 color: Peel blue with Turquoise Blend
-size: L, XXL
+size: XXL
 price: 650
 offer_price: 500
 in_stock: true

@@ -4,7 +4,7 @@ code: CHR-79
 title: Silk Blend Salwar Suit - 3 Piece Set
 category: Salwar
 color: Indigo Blue with subtle geometric prints
-size: M, XXL
+size: XXL
 price: 1500
 offer_price: 950
 in_stock: true
