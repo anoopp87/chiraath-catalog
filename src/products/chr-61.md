@@ -6,7 +6,7 @@ category: Saree
 color: Pink
 price: 750
 offer_price: 500
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-61.jpeg
