@@ -129,6 +129,21 @@
     box-shadow:0 0 0 2px rgba(0,0,0,0.08);
   }
 
+  /* Main image nav arrows */
+  .img-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    background:rgba(255,255,255,0.82);border:1px solid rgba(0,0,0,0.1);
+    color:#111;font-size:20px;line-height:1;
+    border-radius:50%;width:40px;height:40px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.12);
+    transition:background .12s ease,box-shadow .12s ease;
+    z-index:3;
+  }
+  .img-arrow:hover{background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.18)}
+  .img-arrow.prev{left:10px}
+  .img-arrow.next{right:10px}
+
   /* ===== Lightbox ===== */
   #lightbox{
     display:none;position:fixed;inset:0;z-index:999;
@@ -307,6 +322,10 @@
     {% if images and images.length %}
       <div class="gallery">
         <div id="mainWrap" style="position:relative;cursor:zoom-in">
+          {% if images.length > 1 %}
+            <button class="img-arrow prev" id="imgPrev" aria-label="Previous image">&#8249;</button>
+            <button class="img-arrow next" id="imgNext" aria-label="Next image">&#8250;</button>
+          {% endif %}
           <img id="mainImg" class="img" src="{{ images[0] }}" alt="{{ title }}" decoding="async">
           {% if in_stock == false %}
             <div style="position:absolute;inset:0;overflow:hidden;border-radius:16px;pointer-events:none;z-index:2">
@@ -454,6 +473,19 @@
     t.addEventListener('click', () => swapImg(t.dataset.src, t));
     if (i === 0) t.classList.add('active');
   });
+
+  // ===== Main image prev/next arrows =====
+  const imgPrev = document.getElementById('imgPrev');
+  const imgNext = document.getElementById('imgNext');
+
+  function navMain(dir) {
+    if (!allSrcs.length) return;
+    const next = (currentIndex + dir + allSrcs.length) % allSrcs.length;
+    swapImg(allSrcs[next], thumbs[next] || null);
+  }
+
+  imgPrev?.addEventListener('click', e => { e.stopPropagation(); navMain(-1); });
+  imgNext?.addEventListener('click', e => { e.stopPropagation(); navMain(1); });
 
   // ===== Lightbox =====
   const lb       = document.getElementById('lightbox');
