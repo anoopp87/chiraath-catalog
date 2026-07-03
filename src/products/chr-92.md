@@ -7,7 +7,7 @@ color: Peel blue with Turquoise Blend
 size: XXL
 price: 650
 offer_price: 500
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/CHR-92.jpg

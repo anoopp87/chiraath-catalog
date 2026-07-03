@@ -4,7 +4,7 @@ code: CHR-76
 title: Soft Cotton Salwar Set (plus size)
 category: Salwar
 color: White base with blue floral prints
-size: XL, XXL
+size: XL
 price: 1500
 offer_price: 999
 in_stock: true
