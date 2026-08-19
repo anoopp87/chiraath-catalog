@@ -7,7 +7,7 @@ color: Wine Red
 size: XL
 price: 1500
 offer_price: 999
-in_stock: false
+in_stock: true
 hidden: false
 images:
   - /images/chr-58.jpeg
