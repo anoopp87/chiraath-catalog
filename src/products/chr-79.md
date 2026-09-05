@@ -7,7 +7,7 @@ color: Indigo Blue with subtle geometric prints
 size: XXL
 price: 1500
 offer_price: 950
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-79.jpg
