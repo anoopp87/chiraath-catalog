@@ -7,7 +7,7 @@ color: Dusty Rose/Pink Shade
 size: M
 price: 1500
 offer_price: 950
-in_stock: true
+in_stock: false
 hidden: false
 images:
   - /images/chr-77.jpeg
